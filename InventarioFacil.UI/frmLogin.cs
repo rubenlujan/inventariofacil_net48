@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarioFacil.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -60,6 +61,8 @@ namespace InventarioFacil.UI
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            lblMessageError.ForeColor = Color.Red;
+            lblMessageError.Text =  string.Empty;
             txtPwd.Enter += TxtPwd_Enter;
         }
 
@@ -67,6 +70,54 @@ namespace InventarioFacil.UI
         {
             EnableTxtPwd();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(txtUser.Text))
+            {
+                lblMessageError.Text = "Debe introducir el usuario.";
+                return;
+            }
+            if (string.IsNullOrEmpty(txtPwd.Text))
+            {
+                lblMessageError.Text = "Debe introducir la contraseña.";
+                return;
+            }
+            Login();
+        }
+
+        #region Methods
+        private void MainForm_SessionClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Close();
+            // Logout();////Invocar el método Cerrar sesión, cuando en el formulario principal se haya cerrado sesión.
+        }
+
+        private void Login()
+        {
+            this.Cursor = Cursors.WaitCursor;
+            var welcomeForm = new frmSplash();
+            welcomeForm.ShowDialog();
+            var userModel = new UserModel().Login(txtUser.Text, txtPwd.Text);
+            if (userModel != null)
+            {
+                var mainForm = new frmMainForm();
+                this.Hide();
+                mainForm.FormClosed += new FormClosedEventHandler(MainForm_SessionClosed);
+                mainForm.Show();
+            }
+            else
+            {
+                lblMessageError.ForeColor = Color.Red;
+                lblMessageError.Text = "Usuario o contraseña incorrecto";
+            }
+        }
+
+        #endregion
+
+
+
+
     }
 }
     

@@ -33,8 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.Ribbon, Version=2.0.0.0, Culture=neutral, PublicKeyToken=928736e248aa81f9, processorArchitecture=MSIL">
+      <HintPath>..\packages\RibbonWinForms.5.0.1.1\lib\net48\System.Windows.Forms.Ribbon.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +50,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WinFormAnimation, Version=1.6.0.4, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
+      <HintPath>..\packages\WinFormAnimation.1.6.0.4\lib\net40\WinFormAnimation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="frmLogin.cs">
@@ -52,10 +61,37 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainForm.Designer.cs">
+      <DependentUpon>frmMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSplash.Designer.cs">
+      <DependentUpon>frmSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMainForm.resx">
+      <DependentUpon>frmMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSplash.resx">
+      <DependentUpon>frmSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -67,6 +103,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,6 +131,64 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\hamburger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\btnMinimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\btnMaximize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\btnClose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\catalogue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\catalog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\movs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\movs32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\fisico32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\users32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\exit32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\reports32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\add_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\exit-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\log-out48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InventarioFacil.Common\InventarioFacil.Common.csproj">
+      <Project>{bf5d5acb-5311-43b1-b219-1214e6f6e3e1}</Project>
+      <Name>InventarioFacil.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InventarioFacil.Domain\InventarioFacil.Domain.csproj">
+      <Project>{05e92033-12de-4ce7-b038-9fcb9f408f8b}</Project>
+      <Name>InventarioFacil.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -51,6 +51,7 @@
             this.pnlUser = new System.Windows.Forms.Panel();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.pbUser = new System.Windows.Forms.PictureBox();
+            this.lblMessageError = new System.Windows.Forms.Label();
             this.pnlLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -144,6 +145,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblMessageError);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.label6);
@@ -212,7 +214,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.button1.Location = new System.Drawing.Point(98, 411);
+            this.button1.Location = new System.Drawing.Point(99, 428);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(288, 39);
             this.button1.TabIndex = 7;
@@ -226,12 +228,13 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(146, 368);
+            this.btnLogin.Location = new System.Drawing.Point(147, 385);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(181, 37);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "Ingresar";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // pnlPwd
             // 
@@ -326,6 +329,15 @@
             this.pbUser.TabIndex = 0;
             this.pbUser.TabStop = false;
             // 
+            // lblMessageError
+            // 
+            this.lblMessageError.AutoSize = true;
+            this.lblMessageError.Location = new System.Drawing.Point(11, 348);
+            this.lblMessageError.Name = "lblMessageError";
+            this.lblMessageError.Size = new System.Drawing.Size(57, 16);
+            this.lblMessageError.TabIndex = 15;
+            this.lblMessageError.Text = "erromsg";
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -381,6 +393,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pnViewPwd;
+        private System.Windows.Forms.Label lblMessageError;
     }
 }
 
