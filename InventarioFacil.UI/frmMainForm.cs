@@ -62,6 +62,11 @@ namespace InventarioFacil.UI
         {
             OpenChildForm(new frmUsers());
         }
+
+        private void btnItems_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmItems());
+        }
         #endregion
 
         #region "Metodos"
@@ -132,9 +137,10 @@ namespace InventarioFacil.UI
             btnLogout.Text = " Cerrar sesión";
         }
 
-       
+
+
         #endregion|
 
-      
+       
     }
 }

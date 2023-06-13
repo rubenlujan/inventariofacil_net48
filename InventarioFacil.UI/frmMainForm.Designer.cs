@@ -48,7 +48,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnItems = new System.Windows.Forms.Button();
             this.btnCatalogos = new System.Windows.Forms.Button();
             this.panelMenuHeader = new System.Windows.Forms.Panel();
             this.linkProfile = new System.Windows.Forms.LinkLabel();
@@ -101,7 +101,6 @@
             this.panelDesktopHeader.Name = "panelDesktopHeader";
             this.panelDesktopHeader.Size = new System.Drawing.Size(900, 37);
             this.panelDesktopHeader.TabIndex = 18;
-            this.panelDesktopHeader.Visible = false;
             // 
             // lblCaption
             // 
@@ -291,7 +290,7 @@
             this.panelCatalogosSubMenu.Controls.Add(this.button5);
             this.panelCatalogosSubMenu.Controls.Add(this.button4);
             this.panelCatalogosSubMenu.Controls.Add(this.button3);
-            this.panelCatalogosSubMenu.Controls.Add(this.button2);
+            this.panelCatalogosSubMenu.Controls.Add(this.btnItems);
             this.panelCatalogosSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelCatalogosSubMenu.Location = new System.Drawing.Point(0, 222);
             this.panelCatalogosSubMenu.Name = "panelCatalogosSubMenu";
@@ -385,22 +384,23 @@
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnItems
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(0, 0);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(307, 40);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Artículos";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnItems.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnItems.FlatAppearance.BorderSize = 0;
+            this.btnItems.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.btnItems.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.btnItems.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnItems.ForeColor = System.Drawing.Color.Silver;
+            this.btnItems.Location = new System.Drawing.Point(0, 0);
+            this.btnItems.Name = "btnItems";
+            this.btnItems.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
+            this.btnItems.Size = new System.Drawing.Size(307, 40);
+            this.btnItems.TabIndex = 0;
+            this.btnItems.Text = "Artículos";
+            this.btnItems.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnItems.UseVisualStyleBackColor = true;
+            this.btnItems.Click += new System.EventHandler(this.btnItems_Click);
             // 
             // btnCatalogos
             // 
@@ -558,7 +558,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnItems;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button1;
         internal System.Windows.Forms.Button btnInvFisico;

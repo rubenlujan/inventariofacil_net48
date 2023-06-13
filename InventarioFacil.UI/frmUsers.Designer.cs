@@ -32,8 +32,8 @@
             this.ribbonMenuUsuarios = new System.Windows.Forms.Ribbon();
             this.tabAcciones = new System.Windows.Forms.RibbonTab();
             this.rbpNuevo = new System.Windows.Forms.RibbonPanel();
-            this.rbpSalir = new System.Windows.Forms.RibbonPanel();
             this.btnNew = new System.Windows.Forms.RibbonButton();
+            this.rbpSalir = new System.Windows.Forms.RibbonPanel();
             this.btnExit = new System.Windows.Forms.RibbonButton();
             this.gvDatos = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gvDatos)).BeginInit();
@@ -82,19 +82,19 @@
             this.rbpNuevo.Name = "rbpNuevo";
             this.rbpNuevo.Text = "Nuevo";
             // 
-            // rbpSalir
-            // 
-            this.rbpSalir.ButtonMoreVisible = false;
-            this.rbpSalir.Items.Add(this.btnExit);
-            this.rbpSalir.Name = "rbpSalir";
-            this.rbpSalir.Text = "Salir";
-            // 
             // btnNew
             // 
             this.btnNew.Image = global::InventarioFacil.UI.Properties.Resources.add_48;
             this.btnNew.LargeImage = global::InventarioFacil.UI.Properties.Resources.add_48;
             this.btnNew.Name = "btnNew";
             this.btnNew.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNew.SmallImage")));
+            // 
+            // rbpSalir
+            // 
+            this.rbpSalir.ButtonMoreVisible = false;
+            this.rbpSalir.Items.Add(this.btnExit);
+            this.rbpSalir.Name = "rbpSalir";
+            this.rbpSalir.Text = "Salir";
             // 
             // btnExit
             // 
@@ -124,8 +124,12 @@
             this.Controls.Add(this.gvDatos);
             this.Controls.Add(this.ribbonMenuUsuarios);
             this.KeyPreview = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmUsers";
-            this.Text = "frmUsers";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.Text = "Usuarios";
             ((System.ComponentModel.ISupportInitialize)(this.gvDatos)).EndInit();
             this.ResumeLayout(false);
 
