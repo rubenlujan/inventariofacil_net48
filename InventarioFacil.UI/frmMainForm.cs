@@ -88,6 +88,7 @@ namespace InventarioFacil.UI
             PanelClientArea.Controls.Add(childForm);
             PanelClientArea.Tag = childForm;
             childForm.BringToFront();
+            childForm.WindowState = FormWindowState.Normal;
             childForm.Show();
         }
         #endregion

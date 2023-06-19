@@ -82,7 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBServices\ConnectionToMySql.cs" />
+    <Compile Include="DBServices\Entities\Item.cs" />
     <Compile Include="DBServices\Entities\User.cs" />
+    <Compile Include="DBServices\ItemsDA.cs" />
     <Compile Include="DBServices\UserDA.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

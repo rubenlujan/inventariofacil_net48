@@ -61,6 +61,12 @@
     <Compile Include="frmItems.Designer.cs">
       <DependentUpon>frmItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmItemsDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmItemsDetail.Designer.cs">
+      <DependentUpon>frmItemsDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmItems.resx">
       <DependentUpon>frmItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItemsDetail.resx">
+      <DependentUpon>frmItemsDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -194,10 +203,41 @@
       <Project>{bf5d5acb-5311-43b1-b219-1214e6f6e3e1}</Project>
       <Name>InventarioFacil.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InventarioFacil.DAL\InventarioFacil.DAL.csproj">
+      <Project>{3309A103-0F8B-450A-9881-D0CA205E8F7F}</Project>
+      <Name>InventarioFacil.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InventarioFacil.Domain\InventarioFacil.Domain.csproj">
       <Project>{05e92033-12de-4ce7-b038-9fcb9f408f8b}</Project>
       <Name>InventarioFacil.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\search24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\refresh_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Excel-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\edit_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\delete48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\save_48_a.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\cancel_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\exit_48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
