@@ -42,11 +42,14 @@ namespace InventarioFacil.UI
                     
                 dgvItems.Columns[3].Width = 300;
                 dgvItems.Columns[5].Width = 150;
+                dgvItems.Columns[9].Visible = false;
+                dgvItems.Columns[10].Visible = false;
                 dgvItems.Columns[6].DefaultCellStyle.Format = "c2";
                 dgvItems.Columns[7].DefaultCellStyle.Format = "c2";
                 dgvItems.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvItems.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvItems.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
 
             }
             catch(Exception ex)
@@ -57,5 +60,19 @@ namespace InventarioFacil.UI
 
         }
         #endregion
+
+        private void dgvItems_DoubleClick(object sender, EventArgs e)
+        {
+            frmItemsDetail frmItemsDetail = new frmItemsDetail();
+            frmItemsDetail.itemId = Convert.ToInt16(dgvItems.SelectedCells[0].Value.ToString());
+            frmItemsDetail.ShowDialog();    
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            frmItemsDetail frmItemsDetail = new frmItemsDetail();
+            frmItemsDetail.itemId = 0;
+            frmItemsDetail.ShowDialog();
+        }
     }
 }

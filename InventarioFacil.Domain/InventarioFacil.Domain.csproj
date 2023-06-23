@@ -50,6 +50,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InventarioFacil.Common\InventarioFacil.Common.csproj">
+      <Project>{bf5d5acb-5311-43b1-b219-1214e6f6e3e1}</Project>
+      <Name>InventarioFacil.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InventarioFacil.DAL\InventarioFacil.DAL.csproj">
       <Project>{3309a103-0f8b-450a-9881-d0ca205e8f7f}</Project>
       <Name>InventarioFacil.DAL</Name>

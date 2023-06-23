@@ -3,6 +3,7 @@ using System;
 using System.Buffers.Text;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace InventarioFacil.DAL.DBServices
     public abstract class ConnectionToMySql
     {
         private readonly string connectionString;//Obtiene o establece la cadena de conexión.
-
+        MySqlConnection connection;
         public ConnectionToMySql()
         {
             //Establecer la cadena de conexión.
@@ -27,8 +28,40 @@ namespace InventarioFacil.DAL.DBServices
         protected MySqlConnection GetConnection()
         {
             //Este métedo se encarga de establecer y devolver el objeto de conexión a SQL Server.
-            return new MySqlConnection(connectionString);
+            connection = new MySqlConnection(connectionString);
+            return connection;
         }
 
+        protected MySqlDataReader ExecuteDataReader(string strQuery, ref string message)
+        {
+            try
+            {
+                var connection = GetConnection();
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand(strQuery, connection);
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                MySqlDataReader reader = cmd.ExecuteReader();
+                return reader;
+                /*
+                using (var connection = GetConnection())
+                {
+                  
+                }*/
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return null;
+            }
+        }
+
+        protected void CloseConnection()
+        {
+            if(connection != null && connection.State == ConnectionState.Open)
+            {
+                connection.Close();
+            }
+        }        
     }
 }

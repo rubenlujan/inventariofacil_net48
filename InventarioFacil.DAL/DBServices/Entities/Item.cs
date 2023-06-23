@@ -17,5 +17,7 @@ namespace InventarioFacil.DAL.DBServices.Entities
         public decimal Precio_U { get; set; } // 6
         public decimal Costo_U { get; set; } // 7
         public double Existencia { get; set; }  //8
+        public byte[] Imagen { get; set; }  // 9 
+        public string Notas { get; set; }   // 10
     }
 }
