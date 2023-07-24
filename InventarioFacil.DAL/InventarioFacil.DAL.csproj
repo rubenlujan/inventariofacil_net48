@@ -81,7 +81,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBServices\CatalogsDA.cs" />
     <Compile Include="DBServices\ConnectionToMySql.cs" />
+    <Compile Include="DBServices\Entities\Catalog.cs" />
     <Compile Include="DBServices\Entities\Item.cs" />
     <Compile Include="DBServices\Entities\User.cs" />
     <Compile Include="DBServices\ItemsDA.cs" />

@@ -8,11 +8,37 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace InventarioFacil.DAL.DBServices
 {
     public class ItemsDA : ConnectionToMySql
     {
+        public int ValidateItemMovs(int id)
+        {
+            int regs = 0;
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "usp_ValidateItem";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_id", id);
+                    MySqlDataReader reader = command.ExecuteReader();
+                   
+                    while (reader.Read())
+                    {
+                        regs = reader.GetInt32(0);
+                    
+                    }
+                }
+            }
+
+            return regs;    
+        }
+
         public List<Item> GetItemList()
         {
             List<Item> list = new List<Item>();
@@ -74,6 +100,7 @@ namespace InventarioFacil.DAL.DBServices
             item.Costo_U = decimal.Parse(reader["Costo_U"].ToString());
             item.Precio_U = decimal.Parse(reader["Precio_U"].ToString());
             item.Existencia = double.Parse(reader["Stock"].ToString());
+            item.Status = reader["status"].ToString();  
             return item;
         }
 
@@ -93,6 +120,118 @@ namespace InventarioFacil.DAL.DBServices
                         command.Parameters.AddWithValue("@Id", itemId);
                         command.Parameters.AddWithValue("@itemImage", image);
 
+                        command.ExecuteNonQuery();
+
+                        result.ResultId = 200;
+                        result.Message = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.ResultId = 400;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        public OperationResult AddNewItem(Item item, int categoryId, int umedId)
+        {
+            OperationResult result = new OperationResult();
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new MySqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandText = "usp_AddNewItem";
+                        command.Parameters.AddWithValue("@ItemId", item.Id);
+                        command.Parameters.AddWithValue("@SKU", item.SKU);
+                        command.Parameters.AddWithValue("@Barcode", item.CodBar);
+                        command.Parameters.AddWithValue("@Description", item.Descripcion);
+                        command.Parameters.AddWithValue("@UMed_Id", umedId);
+                        command.Parameters.AddWithValue("@UPrice", item.Precio_U);
+                        command.Parameters.AddWithValue("@UCost", item.Costo_U);
+                        command.Parameters.AddWithValue("@Category_Id", categoryId); 
+                        command.Parameters.AddWithValue("@Notes", item.Notas);
+                        command.Parameters.AddWithValue("@Status", item.Status);
+                        command.Parameters.AddWithValue("@itemImage", item.Imagen);
+
+                        command.ExecuteNonQuery();
+
+                        result.ResultId = 200;
+                        result.Message = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.ResultId = 400;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        public OperationResult UpdateItem(Item item, int categoryId, int umedId)
+        {
+            OperationResult result = new OperationResult();
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new MySqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "usp_UpdateItem";
+                        command.Parameters.AddWithValue("@_ItemId", item.Id);
+                        command.Parameters.AddWithValue("@_SKU", item.SKU);
+                        command.Parameters.AddWithValue("@_Barcode", item.CodBar);
+                        command.Parameters.AddWithValue("@_Description", item.Descripcion);
+                        command.Parameters.AddWithValue("@_UMed_Id", umedId);
+                        command.Parameters.AddWithValue("@_UPrice", item.Precio_U);
+                        command.Parameters.AddWithValue("@_UCost", item.Costo_U);
+                        command.Parameters.AddWithValue("@_Category_Id", categoryId);
+                        command.Parameters.AddWithValue("@_Notes", item.Notas);
+                        command.Parameters.AddWithValue("@_Status", item.Status);
+                        command.Parameters.AddWithValue("@_itemImage", item.Imagen);
+
+                        command.ExecuteNonQuery();
+
+                        result.ResultId = 200;
+                        result.Message = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.ResultId = 400;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        public OperationResult DeleteItem(int itemId)
+        {
+            OperationResult result = new OperationResult();
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new MySqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandText = "usp_DeleteItem";
+                        command.Parameters.AddWithValue("@Id", itemId);
                         command.ExecuteNonQuery();
 
                         result.ResultId = 200;

@@ -28,7 +28,8 @@ namespace InventarioFacil.DAL.DBServices
         protected MySqlConnection GetConnection()
         {
             //Este métedo se encarga de establecer y devolver el objeto de conexión a SQL Server.
-            connection = new MySqlConnection(connectionString);
+            if (connection == null || connection.State != ConnectionState.Open) 
+                connection = new MySqlConnection(connectionString);
             return connection;
         }
 

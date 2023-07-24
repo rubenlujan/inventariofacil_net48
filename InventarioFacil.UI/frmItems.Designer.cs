@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItems));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rubbonItems = new System.Windows.Forms.Ribbon();
             this.tabAcciones = new System.Windows.Forms.RibbonTab();
             this.pnlAlta = new System.Windows.Forms.RibbonPanel();
@@ -37,7 +37,7 @@
             this.pnlSearch = new System.Windows.Forms.RibbonPanel();
             this.grpSearch = new System.Windows.Forms.RibbonItemGroup();
             this.lblSearchIn = new System.Windows.Forms.RibbonLabel();
-            this.cboColumns = new System.Windows.Forms.RibbonComboBox();
+            this.txtColumna = new System.Windows.Forms.RibbonTextBox();
             this.lblText = new System.Windows.Forms.RibbonLabel();
             this.txtSearch = new System.Windows.Forms.RibbonTextBox();
             this.btnSearch = new System.Windows.Forms.RibbonButton();
@@ -56,6 +56,7 @@
             // 
             this.rubbonItems.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.rubbonItems.Location = new System.Drawing.Point(0, 0);
+            this.rubbonItems.Margin = new System.Windows.Forms.Padding(2);
             this.rubbonItems.Minimized = false;
             this.rubbonItems.Name = "rubbonItems";
             // 
@@ -72,7 +73,7 @@
             // 
             this.rubbonItems.QuickAccessToolbar.Visible = false;
             this.rubbonItems.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.rubbonItems.Size = new System.Drawing.Size(1064, 159);
+            this.rubbonItems.Size = new System.Drawing.Size(783, 129);
             this.rubbonItems.TabIndex = 0;
             this.rubbonItems.Tabs.Add(this.tabAcciones);
             this.rubbonItems.Tabs.Add(this.tabReportes);
@@ -117,7 +118,7 @@
             // 
             this.grpSearch.DrawBackground = false;
             this.grpSearch.Items.Add(this.lblSearchIn);
-            this.grpSearch.Items.Add(this.cboColumns);
+            this.grpSearch.Items.Add(this.txtColumna);
             this.grpSearch.Items.Add(this.lblText);
             this.grpSearch.Items.Add(this.txtSearch);
             this.grpSearch.Items.Add(this.btnSearch);
@@ -129,12 +130,13 @@
             this.lblSearchIn.Name = "lblSearchIn";
             this.lblSearchIn.Text = "Buscar en";
             // 
-            // cboColumns
+            // txtColumna
             // 
-            this.cboColumns.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
-            this.cboColumns.Name = "cboColumns";
-            this.cboColumns.SelectedIndex = -1;
-            this.cboColumns.TextBoxText = "";
+            this.txtColumna.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
+            this.txtColumna.Name = "txtColumna";
+            this.txtColumna.Text = "";
+            this.txtColumna.TextBoxText = "";
+            this.txtColumna.Value = "";
             // 
             // lblText
             // 
@@ -159,6 +161,7 @@
             this.btnSearch.SmallImage = global::InventarioFacil.UI.Properties.Resources.search24;
             this.btnSearch.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.btnSearch.ToolTipTitle = "Buscar";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // pnlRefresh
             // 
@@ -175,6 +178,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.SmallImage")));
             this.btnRefresh.ToolTip = "Refrescar datos";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // pnlProcess
             // 
@@ -193,7 +197,8 @@
             this.btnExportar.LargeImage = global::InventarioFacil.UI.Properties.Resources.Excel_icon;
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.SmallImage = global::InventarioFacil.UI.Properties.Resources.Excel_icon;
-            this.btnExportar.Text = "Exportar a Excel";
+            this.btnExportar.Text = "Exportar a Archivo";
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // pnlExit
             // 
@@ -222,34 +227,37 @@
             this.dgvItems.AllowUserToDeleteRows = false;
             this.dgvItems.AllowUserToResizeColumns = false;
             this.dgvItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvItems.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvItems.Location = new System.Drawing.Point(0, 159);
+            this.dgvItems.Location = new System.Drawing.Point(0, 129);
+            this.dgvItems.Margin = new System.Windows.Forms.Padding(2);
             this.dgvItems.MultiSelect = false;
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
             this.dgvItems.RowHeadersWidth = 51;
             this.dgvItems.RowTemplate.Height = 24;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(1064, 365);
+            this.dgvItems.Size = new System.Drawing.Size(783, 281);
             this.dgvItems.TabIndex = 1;
+            this.dgvItems.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvItems_ColumnHeaderMouseClick);
             this.dgvItems.DoubleClick += new System.EventHandler(this.dgvItems_DoubleClick);
             // 
             // frmItems
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 524);
+            this.ClientSize = new System.Drawing.Size(783, 410);
             this.ControlBox = false;
             this.Controls.Add(this.dgvItems);
             this.Controls.Add(this.rubbonItems);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmItems";
@@ -277,12 +285,12 @@
         private System.Windows.Forms.RibbonButton btnExit;
         private System.Windows.Forms.RibbonItemGroup grpSearch;
         private System.Windows.Forms.RibbonLabel lblSearchIn;
-        private System.Windows.Forms.RibbonComboBox cboColumns;
         private System.Windows.Forms.RibbonLabel lblText;
         private System.Windows.Forms.RibbonTextBox txtSearch;
         private System.Windows.Forms.RibbonButton btnSearch;
         private System.Windows.Forms.RibbonButton btnRefresh;
         private System.Windows.Forms.RibbonButton btnExportar;
         private System.Windows.Forms.DataGridView dgvItems;
+        private System.Windows.Forms.RibbonTextBox txtColumna;
     }
 }

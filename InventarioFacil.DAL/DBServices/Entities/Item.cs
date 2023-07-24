@@ -19,5 +19,6 @@ namespace InventarioFacil.DAL.DBServices.Entities
         public double Existencia { get; set; }  //8
         public byte[] Imagen { get; set; }  // 9 
         public string Notas { get; set; }   // 10
+        public string Status { get; set; }   // 11
     }
 }

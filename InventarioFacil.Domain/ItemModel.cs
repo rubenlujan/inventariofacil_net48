@@ -38,5 +38,19 @@ namespace InventarioFacil.Domain
             result = _itemsDal.SetItemImage(itemId, image);
             return result;
         }
+
+        public OperationResult AddNewItem(Item item, int categoryId, int umedId)
+        {
+            OperationResult result = new OperationResult();
+            result = _itemsDal.AddNewItem(item, categoryId, umedId);    
+            return result;
+        }
+
+        public OperationResult UpdateItem(Item item, int categoryId, int umedId)
+        {
+            OperationResult result = new OperationResult();
+            result = _itemsDal.UpdateItem(item, categoryId, umedId);
+            return result;
+        }
     }
 }

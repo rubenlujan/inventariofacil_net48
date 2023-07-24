@@ -1,6 +1,7 @@
 ﻿using InventarioFacil.Common;
 using InventarioFacil.DAL.DBServices.Entities;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using Org.BouncyCastle.Asn1.X500;
 using System;
 using System.Collections.Generic;
@@ -44,5 +45,35 @@ namespace InventarioFacil.DAL.DBServices
             }
             return result;
         }
+
+        public List<ComboEntity> RegresaCatalogoCombo(string strQuery, ref string message)
+        {
+            List<ComboEntity> list = new List<ComboEntity>();
+            try
+            {
+                var reader = ExecuteDataReader(strQuery, ref message);
+                if (message.Length > 0)
+                {
+                    throw new Exception(message);
+                }
+                while(reader.Read())
+                {
+                    var value = int.Parse(reader[0].ToString());
+                    var descrip = reader[1].ToString(); 
+                    list.Add(new ComboEntity { Description = descrip, Value = value });
+                }
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+            return list;
+        }
+
+        
     }
 }

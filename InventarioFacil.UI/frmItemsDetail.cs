@@ -12,6 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InventarioFacil.DAL.DBServices.Entities;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
+using System.Security.Cryptography;
+using System.Windows.Forms.VisualStyles;
 
 namespace InventarioFacil.UI
 {
@@ -27,7 +30,8 @@ namespace InventarioFacil.UI
         private int codAnterior;
         string strQuery = string.Empty;
         string message = string.Empty;
-        public int tipoMovimiento = 0;
+        string rutaImagen;
+        public TipoAccion tipoMovimiento;
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -46,6 +50,8 @@ namespace InventarioFacil.UI
 
         private void frmItemsDetail_Load(object sender, EventArgs e)
         {
+            
+            LoadCombos();
             if(itemId != 0)
             {
                 GetDataItem();
@@ -56,6 +62,79 @@ namespace InventarioFacil.UI
             NewItem();  
         }
 
+        #region "LoadSave Data"
+        private void SetDataInfo(Item item)
+        {
+            txtItem.Text = item.Id.ToString();
+            txtCodigo.Text = item.SKU;
+            cboUMed.Text = item.UMed;
+            txtDescripcion.Text = item.Descripcion;
+            cboCategoria.Text = item.Categoria;
+            txtCodBar.Text = item.CodBar;
+            txtPrecioU.Text = item.Precio_U.ToString("N2");
+            txtCostoU.Text = item.Costo_U.ToString("N2");
+            txtNotas.Text = item.Notas;
+            txtExistencia.Text = item.Existencia.ToString("N");
+            cboStatus.Text = item.Status;
+        }
+
+        private void LoadCombos()
+        {
+            message = string.Empty;
+            strQuery = "Select Id, Description FROM categories";
+            var categories = new MetodosGenerales().RegresaCatalogoCombo(strQuery, ref message);
+            SetComboData(cboCategoria, categories);
+            
+            strQuery = "Select Id, Description FROM umeasurements";
+            var umeds = new MetodosGenerales().RegresaCatalogoCombo(strQuery, ref message);
+            SetComboData(cboUMed, umeds);
+
+        }
+
+        private void SetComboData<T>(ComboBox comboControl, List<T> listData)
+        {
+            comboControl.ValueMember = "Value";
+            comboControl.DisplayMember = "Description";
+            comboControl.DataSource = listData;
+        }
+
+        private bool ValidateEmptyFields()
+        {
+            bool result = true;    
+            foreach (Control control in this.gpDatos.Controls)
+            {
+                if (control.Tag != null && control.Tag.ToString().Contains("input"))
+                {
+                    if(control.GetType() == typeof(ComboBox) && control.Text == "")
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+            return result;  
+        }
+        #endregion
+
+        #region BDActions
+        private OperationResult DeleteItem()
+        {
+            OperationResult result = new OperationResult();
+            int regs = new ItemsDA().ValidateItemMovs(int.Parse(txtItem.Text));
+            if (regs > 0)
+            {
+                MessageBox.Show("El articulo tiene movimientos, no se puede borrar.");
+                result.ResultId = 400;
+                return result;
+            }
+
+            result = new ItemsDA().DeleteItem(int.Parse(txtItem.Text));
+            if(result.ResultId != 200)
+                MessageBox.Show("Ocurrió un error al borrar el registro: " + result.Message);
+
+            return result;
+        }
+        #endregion
 
         private void btnUploadPic_Click(object sender, EventArgs e)
         {
@@ -64,17 +143,16 @@ namespace InventarioFacil.UI
             {
                 try
                 {
-                    string rutaImagen = fileDialog.FileName;
+                    rutaImagen = fileDialog.FileName;
                     byte[] imagenBytes = File.ReadAllBytes(rutaImagen);
-                    Image itemPic;
 
+                    Image itemPic;
                     using (MemoryStream memoryStream = new MemoryStream(imagenBytes))
                     {
-                        itemPic = System.Drawing.Image.FromStream(memoryStream);
+                        itemPic = Image.FromStream(memoryStream);
                     }
-                    itemPhoto.Image = itemPic;
 
-                    OperationResult result = new ItemModel().SetItemImage(int.Parse(txtItem.Text), imagenBytes);
+                    itemPhoto.Image = itemPic;
                 }
                 catch(Exception ex) 
                 {
@@ -89,9 +167,9 @@ namespace InventarioFacil.UI
                 this.Close();
         }
 
-     
         private void btnEditar_Click(object sender, EventArgs e)
         {
+            tipoMovimiento = TipoAccion.Cambio;
             codAnterior = int.Parse(txtItem.Text);
             EnabledFields(true);
             EnabledButtons(false);
@@ -100,11 +178,13 @@ namespace InventarioFacil.UI
         #region Methods
         private void GetDataItem()
         {
+            this.Cursor = Cursors.WaitCursor;
             Item item = new ItemModel().GetItem(itemId);
             SetDataInfo(item);
             if (item.Imagen.Length > 0)
                 SetItemImage(item.Imagen);
             EnabledFields(false);
+            this.Cursor= Cursors.Default;
         }
 
         private void SetItemImage(byte[] image)
@@ -117,19 +197,7 @@ namespace InventarioFacil.UI
             itemPhoto.Image = itemPic;
         }
 
-        private void SetDataInfo(Item item)
-        {
-            txtItem.Text = item.Id.ToString();
-            txtCodigo.Text = item.SKU;
-            cboUMed.Text = item.UMed;
-            txtDescripcion.Text = item.Descripcion;
-            cboCategoria.Text = item.Categoria;
-            txtCodBar.Text = item.CodBar;
-            txtPrecioU.Text = item.Precio_U.ToString("N2");
-            txtCostoU.Text = item.Costo_U.ToString("N2");
-            txtNotas.Text = item.Notas;
-            txtExistencia.Text = item.Existencia.ToString("N");
-        }
+       
 
         private void EnabledFields(bool enabled)
         {
@@ -147,6 +215,9 @@ namespace InventarioFacil.UI
                 if (control.GetType() == typeof(TextBox) || control.GetType() == typeof(ComboBox))
                     control.Text = string.Empty;    
             }
+            txtCostoU.Text = "0";
+            txtPrecioU.Text = "0";
+            cboStatus.Text = "Activo";
         }
 
         private void EnabledButtons(bool bEnable)
@@ -182,7 +253,7 @@ namespace InventarioFacil.UI
             EnabledButtons(false);
             EnabledFields(true);
             itemPhoto.Image = null;
-            itemId = new MetodosGenerales().RegresaCampoNumerico("SELECT MAX(ItemId) FROM Items", ref message);
+            itemId = new MetodosGenerales().RegresaCampoNumerico("SELECT MAX(ItemId) FROM items", ref message);
             if (message.Length > 0)
             {
                 MessageBox.Show("Ha ocurrido el siguiente error:" + message);
@@ -193,13 +264,104 @@ namespace InventarioFacil.UI
             }
             itemId += 1;
             txtItem.Text = itemId.ToString();
+            tipoMovimiento = TipoAccion.Alta;
         }
 
         #endregion
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            NewItem();  
+            NewItem();
+            tipoMovimiento = TipoAccion.Alta;
+        }
+
+        private void btnGrabar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OperationResult result = new OperationResult();
+                GlobalData.ReloadGrid = true;
+                this.Cursor = Cursors.WaitCursor;
+
+                switch (tipoMovimiento)
+                {
+                    case TipoAccion.Alta:
+                        result = AddNewItem();
+                        break;
+                    case TipoAccion.Cambio:
+                        result = UpdateItem();
+                        break;
+                    case TipoAccion.Baja:
+                        result = new ItemsDA().DeleteItem(int.Parse(txtItem.Text));
+                        this.Close();
+                        break;
+                }
+                this.Cursor = Cursors.Default;
+
+                if (result.ResultId != 200)
+                    throw new Exception(result.Message);
+
+
+                EnabledFields(false);
+                EnabledButtons(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió el siguiente error:" + ex.Message);
+            }
+        }
+
+        private OperationResult AddNewItem()
+        {
+            if(!ValidateEmptyFields())
+            {
+                MessageBox.Show("Debe llenar todos los combos.");
+                return null;
+            }
+
+            var item = SetItemData();
+            var categoryId = (int)cboCategoria.SelectedValue;
+            var umed = (int)cboUMed.SelectedValue;
+            return new ItemModel().AddNewItem(item, categoryId, umed);
+        }
+
+        private OperationResult UpdateItem()
+        {
+            OperationResult result = new OperationResult();
+            var item = SetItemData();
+            var categoryId = (int)cboCategoria.SelectedValue;
+            var umed = (int)cboUMed.SelectedValue;
+            return new ItemModel().UpdateItem(item, categoryId, umed);  
+        }
+
+        private Item SetItemData()
+        {
+            Item item = new Item();
+            item.Id = int.Parse(txtItem.Text);
+            item.SKU = txtCodigo.Text;
+            item.Descripcion = txtDescripcion.Text;
+            item.CodBar = txtCodBar.Text;
+            item.Precio_U = decimal.Parse(txtPrecioU.Text);
+            item.Costo_U = decimal.Parse(txtCostoU.Text);
+            item.Notas = txtNotas.Text;
+            item.Status = cboStatus.Text;
+
+            if (!string.IsNullOrEmpty(rutaImagen))
+                item.Imagen = File.ReadAllBytes(rutaImagen);
+
+            return item;
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            var result = DeleteItem();
+            if (result.ResultId == 200)
+            {
+                GlobalData.ReloadGrid = true;
+                MessageBox.Show("Articulo borrado.");
+                this.Close();   
+            }
+            EnabledButtons(false);
         }
     }
 }
