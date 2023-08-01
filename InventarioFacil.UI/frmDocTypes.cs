@@ -13,13 +13,12 @@ using System.Windows.Forms;
 
 namespace InventarioFacil
 {
-    public partial class frmCategories : Form
+    public partial class frmDocTypes : Form
     {
-        private string strQuery;
         BindingSource bs = new BindingSource();
         DataView dv = new DataView();
-        int actualPos = 0;  
-        public frmCategories()
+        int actualPos = 0;
+        public frmDocTypes()
         {
             InitializeComponent();
         }
@@ -33,13 +32,12 @@ namespace InventarioFacil
                     return;
 
                 this.Cursor = Cursors.WaitCursor;
-                strQuery = "Select * from categories";
-                var data = new CatalogsDA().GetCatalogList(strQuery);
+                var data = new DocTypesDA().GetDocTypes();
                 bs.DataSource = null;
                 bs.DataSource = data;
                 dgvData.DataSource = bs;
-                this.Cursor = Cursors.Default;
                 bs.Position = actualPos;
+                this.Cursor = Cursors.Default;
             }
             catch(Exception ex) 
             {
@@ -48,18 +46,18 @@ namespace InventarioFacil
             }
             
         }
-        
-        private void DeleteRecord() 
+
+        private void DeleteRecord()
         {
             OperationResult result = new OperationResult();
             var rowIndex = dgvData.SelectedRows[0];
             var description = rowIndex.Cells[1].Value.ToString();
             actualPos = rowIndex.Index;
-            if (MessageBox.Show(String.Format("¿Desea borrar la categoria {0} ?", description), "Borrar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(String.Format("¿Desea borrar el concepto {0} ?", description), "Borrar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Cursor = Cursors.WaitCursor;
                 var id = int.Parse(rowIndex.Cells[0].Value.ToString());
-                result = new CatalogsDA().DeleteCategory(id);
+                result = new MetodosGenerales().DeleteGeneric(id, "usp_DeleteDocType");
                 this.Cursor = Cursors.Default;
                 var message = result.ResultId == 200 ? "Registro borrado" : "Error al borrar el registro: " + result.Message;
                 MessageBox.Show(message);
@@ -67,7 +65,7 @@ namespace InventarioFacil
         }
         #endregion
 
-        private void frmCategories_Load(object sender, EventArgs e)
+        private void frmDocTypes_Load(object sender, EventArgs e)
         {
             GlobalData.ReloadGrid = true;
             LoadData();
@@ -81,20 +79,19 @@ namespace InventarioFacil
         private void rbAdd_Click(object sender, EventArgs e)
         {
             GlobalData.TipoEdicion = TipoAccion.Alta;
-            var frmChild = new frmCategoriesDetail();    
+            var frmChild = new frmDocTypeDetail();    
             frmChild.ShowDialog();
             LoadData();
         }
 
         private void rbDelete_Click(object sender, EventArgs e)
         {
-            if (dgvData.SelectedRows.Count == 0)
+            if(dgvData.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Debe seleccionar un registro.");
                 return;
             }
             DeleteRecord();
-            GlobalData.ReloadGrid = true;
             LoadData();
         }
 
@@ -105,11 +102,14 @@ namespace InventarioFacil
                 GlobalData.TipoEdicion = TipoAccion.Cambio;
                 var rowIndex = dgvData.SelectedRows[0];
                 actualPos = rowIndex.Index;
+
                 var id = rowIndex.Cells[0].Value.ToString();
                 var description = rowIndex.Cells[1].Value.ToString();
-                var frmChild = new frmCategoriesDetail();
-                frmChild.txtCategoria.Text = id;
+                var dtype = rowIndex.Cells[2].Value.ToString();
+                var frmChild = new frmDocTypeDetail();
+                frmChild.txtConcepto.Text = id;
                 frmChild.txtDescripcion.Text = description;
+                frmChild.SetCombo(dtype);
                 frmChild.ShowDialog();
                 LoadData();
             }

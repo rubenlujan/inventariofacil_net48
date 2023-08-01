@@ -10,13 +10,12 @@ using System.Windows.Forms;
 
 namespace InventarioFacil
 {
-    public partial class frmUsers : Form
+    public partial class frmDocInv : Form
     {
-        public frmUsers()
+        public frmDocInv()
         {
             InitializeComponent();
         }
-      
 
         private void btnExit_Click(object sender, EventArgs e)
         {

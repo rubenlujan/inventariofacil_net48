@@ -1,6 +1,6 @@
 ﻿namespace InventarioFacil
 {
-    partial class frmWarehouseDetail
+    partial class frmCategoriesDetail
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtAlmacen = new System.Windows.Forms.TextBox();
+            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,7 +40,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtAlmacen);
+            this.groupBox1.BackColor = System.Drawing.Color.AliceBlue;
+            this.groupBox1.Controls.Add(this.txtCategoria);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnGrabar);
             this.groupBox1.Controls.Add(this.label2);
@@ -49,18 +50,18 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(357, 157);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.Size = new System.Drawing.Size(341, 118);
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // txtAlmacen
+            // txtCategoria
             // 
-            this.txtAlmacen.Enabled = false;
-            this.txtAlmacen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAlmacen.Location = new System.Drawing.Point(84, 22);
-            this.txtAlmacen.Name = "txtAlmacen";
-            this.txtAlmacen.Size = new System.Drawing.Size(42, 23);
-            this.txtAlmacen.TabIndex = 10;
+            this.txtCategoria.Enabled = false;
+            this.txtCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCategoria.Location = new System.Drawing.Point(84, 22);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(42, 23);
+            this.txtCategoria.TabIndex = 10;
             // 
             // button2
             // 
@@ -111,18 +112,16 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "Almacen:";
             // 
-            // frmWarehouseDetail
+            // frmCategoriesDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.AliceBlue;
-            this.ClientSize = new System.Drawing.Size(357, 157);
+            this.ClientSize = new System.Drawing.Size(341, 118);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
-            this.Name = "frmWarehouseDetail";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Almacenes";
-            this.Load += new System.EventHandler(this.frmWarehouseDetail_Load);
+            this.Name = "frmCategoriesDetail";
+            this.Text = "Categorias";
+            this.Load += new System.EventHandler(this.frmCategoriesDetail_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -132,7 +131,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.TextBox txtAlmacen;
+        public System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Label label2;

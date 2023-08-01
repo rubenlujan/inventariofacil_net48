@@ -12,16 +12,11 @@ using System.Windows.Forms;
 
 namespace InventarioFacil
 {
-    public partial class frmWarehouseDetail : Form
+    public partial class frmCategoriesDetail : Form
     {
-        public frmWarehouseDetail()
+        public frmCategoriesDetail()
         {
             InitializeComponent();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -34,9 +29,9 @@ namespace InventarioFacil
 
             OperationResult result;
             if (GlobalData.TipoEdicion == TipoAccion.Alta)
-                result = new CatalogsDA().AddNewWarehouse(int.Parse(txtAlmacen.Text), txtDescripcion.Text);
+                result = new CatalogsDA().AddNewCategory(int.Parse(txtCategoria.Text), txtDescripcion.Text);
             else
-                result = new CatalogsDA().UpdateWarehouse(int.Parse(txtAlmacen.Text), txtDescripcion.Text);
+                result = new CatalogsDA().UpdateCategory(int.Parse(txtCategoria.Text), txtDescripcion.Text);
 
             if (result.ResultId != 200)
             {
@@ -52,7 +47,7 @@ namespace InventarioFacil
 
         public void SetNewId()
         {
-            var strQuery = "select COALESCE(MAX(id), 0) + 1   from warehouse";
+            var strQuery = "select COALESCE(MAX(id), 0) + 1   from categories";
             string message = string.Empty;
             var maxId = new MetodosGenerales().RegresaCampoNumerico(strQuery, ref message);
             if (!string.IsNullOrEmpty(message))
@@ -60,13 +55,19 @@ namespace InventarioFacil
                 MessageBox.Show("Ocurrió un error: " + message);
                 return;
             }
-            txtAlmacen.Text = maxId.ToString(); 
+            txtCategoria.Text = maxId.ToString();
+        }
+      
+
+        private void frmCategoriesDetail_Load(object sender, EventArgs e)
+        {
+            if (GlobalData.TipoEdicion == TipoAccion.Alta)
+                SetNewId();
         }
 
-        private void frmWarehouseDetail_Load(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            if(GlobalData.TipoEdicion == TipoAccion.Alta)
-                SetNewId();
+            this.Close();
         }
     }
 }

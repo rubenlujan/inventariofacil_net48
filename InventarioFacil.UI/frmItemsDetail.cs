@@ -16,7 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 using System.Security.Cryptography;
 using System.Windows.Forms.VisualStyles;
 
-namespace InventarioFacil.UI
+namespace InventarioFacil
 {
     public partial class frmItemsDetail : Form
     {

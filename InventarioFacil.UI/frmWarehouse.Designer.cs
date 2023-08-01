@@ -1,4 +1,4 @@
-﻿namespace InventarioFacil.UI
+﻿namespace InventarioFacil
 {
     partial class frmWarehouse
     {
@@ -86,8 +86,8 @@
             // 
             // rbAdd
             // 
-            this.rbAdd.Image = global::InventarioFacil.UI.Properties.Resources.add_48;
-            this.rbAdd.LargeImage = global::InventarioFacil.UI.Properties.Resources.add_48;
+            this.rbAdd.Image = global::InventarioFacil.Properties.Resources.add_48;
+            this.rbAdd.LargeImage = global::InventarioFacil.Properties.Resources.add_48;
             this.rbAdd.Name = "rbAdd";
             this.rbAdd.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbAdd.SmallImage")));
             this.rbAdd.Click += new System.EventHandler(this.rbAdd_Click);
@@ -102,8 +102,8 @@
             // 
             // rbDelete
             // 
-            this.rbDelete.Image = global::InventarioFacil.UI.Properties.Resources.delete48;
-            this.rbDelete.LargeImage = global::InventarioFacil.UI.Properties.Resources.delete48;
+            this.rbDelete.Image = global::InventarioFacil.Properties.Resources.delete48;
+            this.rbDelete.LargeImage = global::InventarioFacil.Properties.Resources.delete48;
             this.rbDelete.Name = "rbDelete";
             this.rbDelete.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbDelete.SmallImage")));
             this.rbDelete.Click += new System.EventHandler(this.rbDelete_Click);
@@ -118,8 +118,8 @@
             // 
             // rbExit
             // 
-            this.rbExit.Image = global::InventarioFacil.UI.Properties.Resources.log_out48;
-            this.rbExit.LargeImage = global::InventarioFacil.UI.Properties.Resources.log_out48;
+            this.rbExit.Image = global::InventarioFacil.Properties.Resources.log_out48;
+            this.rbExit.LargeImage = global::InventarioFacil.Properties.Resources.log_out48;
             this.rbExit.Name = "rbExit";
             this.rbExit.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbExit.SmallImage")));
             this.rbExit.Click += new System.EventHandler(this.rbExit_Click);

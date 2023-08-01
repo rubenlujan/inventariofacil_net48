@@ -1,4 +1,4 @@
-﻿namespace InventarioFacil.UI
+﻿namespace InventarioFacil
 {
     partial class frmLogin
     {
@@ -128,7 +128,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::InventarioFacil.UI.Properties.Resources.logo_login;
+            this.pictureBox1.Image = global::InventarioFacil.Properties.Resources.logo_login;
             this.pictureBox1.Location = new System.Drawing.Point(9, 64);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
@@ -182,7 +182,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::InventarioFacil.UI.Properties.Resources.logo;
+            this.pictureBox2.Image = global::InventarioFacil.Properties.Resources.logo;
             this.pictureBox2.Location = new System.Drawing.Point(2, 505);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
@@ -275,7 +275,7 @@
             // 
             // pnViewPwd
             // 
-            this.pnViewPwd.Image = global::InventarioFacil.UI.Properties.Resources.eye;
+            this.pnViewPwd.Image = global::InventarioFacil.Properties.Resources.eye;
             this.pnViewPwd.Location = new System.Drawing.Point(339, 8);
             this.pnViewPwd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnViewPwd.Name = "pnViewPwd";
@@ -302,7 +302,7 @@
             // 
             // pbPwd
             // 
-            this.pbPwd.Image = global::InventarioFacil.UI.Properties.Resources.padlock;
+            this.pbPwd.Image = global::InventarioFacil.Properties.Resources.padlock;
             this.pbPwd.Location = new System.Drawing.Point(4, 8);
             this.pbPwd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbPwd.Name = "pbPwd";
@@ -353,7 +353,7 @@
             // 
             // pbUser
             // 
-            this.pbUser.Image = global::InventarioFacil.UI.Properties.Resources.user;
+            this.pbUser.Image = global::InventarioFacil.Properties.Resources.user;
             this.pbUser.Location = new System.Drawing.Point(4, 10);
             this.pbUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbUser.Name = "pbUser";

@@ -13,7 +13,7 @@ using InventarioFacil.DAL.DBServices.Entities;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
-namespace InventarioFacil.UI
+namespace InventarioFacil
 {
     public partial class frmItems : Form
     {

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventarioFacil.UI
+namespace InventarioFacil
 {
     public partial class frmLogin : Form
     {
@@ -101,7 +101,7 @@ namespace InventarioFacil.UI
             var userModel = new UserModel().Login(txtUser.Text, txtPwd.Text);
             if (userModel != null)
             {
-                var mainForm = new frmMainForm();
+                var mainForm = new frmMain();
                 this.Hide();
                 mainForm.FormClosed += new FormClosedEventHandler(MainForm_SessionClosed);
                 mainForm.Show();

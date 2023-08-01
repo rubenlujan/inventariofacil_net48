@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventarioFacil.UI", "InventarioFacil.UI\InventarioFacil.UI.csproj", "{DE1C0B08-E3F0-40CF-ABF2-72D24A332A33}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventarioFacil", "InventarioFacil.UI\InventarioFacil.csproj", "{DE1C0B08-E3F0-40CF-ABF2-72D24A332A33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventarioFacil.Common", "InventarioFacil.Common\InventarioFacil.Common.csproj", "{BF5D5ACB-5311-43B1-B219-1214E6F6E3E1}"
 EndProject

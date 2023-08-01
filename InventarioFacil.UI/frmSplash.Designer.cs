@@ -1,4 +1,4 @@
-﻿namespace InventarioFacil.UI
+﻿namespace InventarioFacil
 {
     partial class frmSplash
     {

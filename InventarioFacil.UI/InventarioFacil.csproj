@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DE1C0B08-E3F0-40CF-ABF2-72D24A332A33}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>InventarioFacil.UI</RootNamespace>
-    <AssemblyName>InventarioFacil.UI</AssemblyName>
+    <RootNamespace>InventarioFacil</RootNamespace>
+    <AssemblyName>InventarioFacil</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>InventarioFacil.UI.Program</StartupObject>
+    <StartupObject>InventarioFacil.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo.ico</ApplicationIcon>
@@ -67,12 +67,23 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.Win.4, Version=4.0.20201.416, Culture=neutral, PublicKeyToken=944ae1ea0e47ca04" />
+    <Reference Include="C1.Win.C1Command.4, Version=4.0.20201.416, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Ribbon.4, Version=4.0.20201.416, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
     <Reference Include="CircularProgressBar, Version=2.8.0.16, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\packages\CircularProgressBar.2.8.0.16\lib\net40\CircularProgressBar.dll</HintPath>
     </Reference>
+    <Reference Include="Infragistics4.Shared.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
+    <Reference Include="Infragistics4.Win.UltraWinDock.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinExplorerBar.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.UltraWinTabbedMdi.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL" />
+    <Reference Include="Infragistics4.Win.v11.2, Version=11.2.20112.1010, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms.Ribbon, Version=2.0.0.0, Culture=neutral, PublicKeyToken=928736e248aa81f9, processorArchitecture=MSIL">
       <HintPath>..\packages\RibbonWinForms.5.0.1.1\lib\net48\System.Windows.Forms.Ribbon.dll</HintPath>
@@ -91,11 +102,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmCategories.cs">
+    <Compile Include="frmCategoriesDetail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCategories.Designer.cs">
-      <DependentUpon>frmCategories.cs</DependentUpon>
+    <Compile Include="frmCategoriesDetail.Designer.cs">
+      <DependentUpon>frmCategoriesDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocInv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocInv.Designer.cs">
+      <DependentUpon>frmDocInv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocTypeDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocTypeDetail.Designer.cs">
+      <DependentUpon>frmDocTypeDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="frmItems.cs">
       <SubType>Form</SubType>
@@ -115,6 +138,12 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +162,18 @@
     <Compile Include="frmUsers.Designer.cs">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCategories.Designer.cs">
+      <DependentUpon>frmCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDocTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocTypes.Designer.cs">
+      <DependentUpon>frmDocTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWarehouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,8 +188,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCategories.resx">
-      <DependentUpon>frmCategories.cs</DependentUpon>
+    <EmbeddedResource Include="frmCategoriesDetail.resx">
+      <DependentUpon>frmCategoriesDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocInv.resx">
+      <DependentUpon>frmDocInv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocTypeDetail.resx">
+      <DependentUpon>frmDocTypeDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmItems.resx">
       <DependentUpon>frmItems.cs</DependentUpon>
@@ -159,6 +206,9 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMainForm.resx">
       <DependentUpon>frmMainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,12 +218,19 @@
     <EmbeddedResource Include="frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCategories.resx">
+      <DependentUpon>frmCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDocTypes.resx">
+      <DependentUpon>frmDocTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmWarehouse.resx">
       <DependentUpon>frmWarehouse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWarehouseDetail.resx">
       <DependentUpon>frmWarehouseDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -228,9 +285,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\btnClose.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="images\catalogue.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\catalog.png" />
@@ -316,6 +370,14 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\impresion_32.png" />
+    <None Include="images\impresora.png" />
+    <None Include="images\add_62.png" />
+    <None Include="images\anadir.png" />
+    <None Include="images\anadir_48.png" />
+    <None Include="images\items.png" />
+    <None Include="images\login_img.png" />
+    <None Include="images\Reports_4.png" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

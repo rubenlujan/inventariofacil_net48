@@ -1,4 +1,4 @@
-﻿namespace InventarioFacil.UI
+﻿namespace InventarioFacil
 {
     partial class frmUsers
     {
@@ -84,8 +84,8 @@
             // 
             // btnNew
             // 
-            this.btnNew.Image = global::InventarioFacil.UI.Properties.Resources.add_48;
-            this.btnNew.LargeImage = global::InventarioFacil.UI.Properties.Resources.add_48;
+            this.btnNew.Image = global::InventarioFacil.Properties.Resources.add_48;
+            this.btnNew.LargeImage = global::InventarioFacil.Properties.Resources.add_48;
             this.btnNew.Name = "btnNew";
             this.btnNew.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNew.SmallImage")));
             // 
@@ -98,8 +98,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Image = global::InventarioFacil.UI.Properties.Resources.log_out48;
-            this.btnExit.LargeImage = global::InventarioFacil.UI.Properties.Resources.log_out48;
+            this.btnExit.Image = global::InventarioFacil.Properties.Resources.log_out48;
+            this.btnExit.LargeImage = global::InventarioFacil.Properties.Resources.log_out48;
             this.btnExit.Name = "btnExit";
             this.btnExit.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnExit.SmallImage")));
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);

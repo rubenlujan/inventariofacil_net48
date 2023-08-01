@@ -1,4 +1,4 @@
-﻿namespace InventarioFacil.UI
+﻿namespace InventarioFacil
 {
     partial class frmItems
     {
@@ -99,8 +99,8 @@
             // 
             // btnNew
             // 
-            this.btnNew.Image = global::InventarioFacil.UI.Properties.Resources.add_48;
-            this.btnNew.LargeImage = global::InventarioFacil.UI.Properties.Resources.add_48;
+            this.btnNew.Image = global::InventarioFacil.Properties.Resources.add_48;
+            this.btnNew.LargeImage = global::InventarioFacil.Properties.Resources.add_48;
             this.btnNew.Name = "btnNew";
             this.btnNew.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnNew.SmallImage")));
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -158,7 +158,7 @@
             this.btnSearch.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSearch.LargeImage")));
             this.btnSearch.MaxSizeMode = System.Windows.Forms.RibbonElementSizeMode.Compact;
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.SmallImage = global::InventarioFacil.UI.Properties.Resources.search24;
+            this.btnSearch.SmallImage = global::InventarioFacil.Properties.Resources.search24;
             this.btnSearch.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.btnSearch.ToolTipTitle = "Buscar";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -173,8 +173,8 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Image = global::InventarioFacil.UI.Properties.Resources.refresh_32;
-            this.btnRefresh.LargeImage = global::InventarioFacil.UI.Properties.Resources.refresh_32;
+            this.btnRefresh.Image = global::InventarioFacil.Properties.Resources.refresh_32;
+            this.btnRefresh.LargeImage = global::InventarioFacil.Properties.Resources.refresh_32;
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.SmallImage")));
             this.btnRefresh.ToolTip = "Refrescar datos";
@@ -193,10 +193,10 @@
             // 
             this.btnExportar.DrawDropDownIconsBar = false;
             this.btnExportar.DropDownResizable = true;
-            this.btnExportar.Image = global::InventarioFacil.UI.Properties.Resources.Excel_icon;
-            this.btnExportar.LargeImage = global::InventarioFacil.UI.Properties.Resources.Excel_icon;
+            this.btnExportar.Image = global::InventarioFacil.Properties.Resources.Excel_icon;
+            this.btnExportar.LargeImage = global::InventarioFacil.Properties.Resources.Excel_icon;
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.SmallImage = global::InventarioFacil.UI.Properties.Resources.Excel_icon;
+            this.btnExportar.SmallImage = global::InventarioFacil.Properties.Resources.Excel_icon;
             this.btnExportar.Text = "Exportar a Archivo";
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
@@ -210,8 +210,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Image = global::InventarioFacil.UI.Properties.Resources.log_out48;
-            this.btnExit.LargeImage = global::InventarioFacil.UI.Properties.Resources.log_out48;
+            this.btnExit.Image = global::InventarioFacil.Properties.Resources.log_out48;
+            this.btnExit.LargeImage = global::InventarioFacil.Properties.Resources.log_out48;
             this.btnExit.Name = "btnExit";
             this.btnExit.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnExit.SmallImage")));
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);

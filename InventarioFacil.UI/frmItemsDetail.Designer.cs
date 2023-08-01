@@ -1,4 +1,4 @@
-﻿namespace InventarioFacil.UI
+﻿namespace InventarioFacil
 {
     partial class frmItemsDetail
     {
@@ -102,7 +102,7 @@
             // btnNuevo
             // 
             this.btnNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNuevo.Image = global::InventarioFacil.UI.Properties.Resources.add_48;
+            this.btnNuevo.Image = global::InventarioFacil.Properties.Resources.add_48;
             this.btnNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(51, 52);
@@ -117,7 +117,7 @@
             // btnEditar
             // 
             this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditar.Image = global::InventarioFacil.UI.Properties.Resources.edit_48;
+            this.btnEditar.Image = global::InventarioFacil.Properties.Resources.edit_48;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(51, 52);
@@ -132,7 +132,7 @@
             // btnBorrar
             // 
             this.btnBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnBorrar.Image = global::InventarioFacil.UI.Properties.Resources.delete48;
+            this.btnBorrar.Image = global::InventarioFacil.Properties.Resources.delete48;
             this.btnBorrar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBorrar.Name = "btnBorrar";
             this.btnBorrar.Size = new System.Drawing.Size(51, 52);
@@ -148,7 +148,7 @@
             // 
             this.btnGrabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnGrabar.Enabled = false;
-            this.btnGrabar.Image = global::InventarioFacil.UI.Properties.Resources.save_48_a;
+            this.btnGrabar.Image = global::InventarioFacil.Properties.Resources.save_48_a;
             this.btnGrabar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(51, 52);
@@ -164,7 +164,7 @@
             // 
             this.btnCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Image = global::InventarioFacil.UI.Properties.Resources.cancel_48;
+            this.btnCancelar.Image = global::InventarioFacil.Properties.Resources.cancel_48;
             this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(51, 52);
@@ -179,7 +179,7 @@
             // btnSalir
             // 
             this.btnSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSalir.Image = global::InventarioFacil.UI.Properties.Resources.exit_48;
+            this.btnSalir.Image = global::InventarioFacil.Properties.Resources.exit_48;
             this.btnSalir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(51, 52);

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventarioFacil.UI
+namespace InventarioFacil
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace InventarioFacil.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmItems());
+            Application.Run(new frmLogin());
         }
     }
 }

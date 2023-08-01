@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventarioFacil.UI
+namespace InventarioFacil
 {
     public partial class frmMainForm : Form
     {
@@ -66,6 +66,26 @@ namespace InventarioFacil.UI
         private void btnItems_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmItems());
+        }
+
+        private void btnWarehouse_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmWarehouse());
+        }
+
+        private void btnCategories_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmCategories());
+        }
+
+        private void btnDocTypes_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmDocTypes());
+        }
+
+        private void btnMovimientos_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmDocInv());
         }
         #endregion
 
@@ -140,8 +160,11 @@ namespace InventarioFacil.UI
 
 
 
+
+
+
         #endregion|
 
-       
+      
     }
 }

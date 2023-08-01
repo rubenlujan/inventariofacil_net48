@@ -74,6 +74,34 @@ namespace InventarioFacil.DAL.DBServices
             return list;
         }
 
-        
+        public OperationResult DeleteGeneric(int id, string spName)
+        {
+            OperationResult result = new OperationResult();
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new MySqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandText = spName;
+                        command.Parameters.AddWithValue("@_id", id);
+                        command.ExecuteNonQuery();
+
+                        result.ResultId = 200;
+                        result.Message = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                result.ResultId = 400;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
+
     }
 }

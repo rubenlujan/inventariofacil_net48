@@ -11,13 +11,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InventarioFacil.UI
+namespace InventarioFacil
 {
     public partial class frmWarehouse : Form
     {
         private string strQuery;
         BindingSource bs = new BindingSource();
         DataView dv = new DataView();
+        int actualPos = 0;
         public frmWarehouse()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace InventarioFacil.UI
                 bs.DataSource = null;
                 bs.DataSource = data;
                 dgvData.DataSource = bs;
+                bs.Position = actualPos;
                 this.Cursor = Cursors.Default;
             }
             catch(Exception ex) 
@@ -45,6 +47,23 @@ namespace InventarioFacil.UI
                 MessageBox.Show("Ha ocurrido el siguiente error: " + ex.Message);
             }
             
+        }
+
+        private void DeleteRecord()
+        {
+            OperationResult result = new OperationResult();
+            var rowIndex = dgvData.SelectedRows[0];
+            var description = rowIndex.Cells[1].Value.ToString();
+            actualPos = rowIndex.Index;
+            if (MessageBox.Show(String.Format("¿Desea borrar el almacen {0} ?", description), "Borrar registro", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Cursor = Cursors.WaitCursor;
+                var id = int.Parse(rowIndex.Cells[0].Value.ToString());
+                result = new CatalogsDA().DeleteWarehouse(id);
+                this.Cursor = Cursors.Default;
+                var message = result.ResultId == 200 ? "Registro borrado" : "Error al borrar el registro: " + result.Message;
+                MessageBox.Show(message);
+            }
         }
         #endregion
 
@@ -74,6 +93,8 @@ namespace InventarioFacil.UI
                 MessageBox.Show("Debe seleccionar un registro.");
                 return;
             }
+            DeleteRecord();
+            LoadData();
         }
 
         private void dgvData_DoubleClick(object sender, EventArgs e)
