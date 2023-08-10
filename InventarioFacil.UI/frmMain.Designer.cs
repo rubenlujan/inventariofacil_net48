@@ -30,12 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.ultraTabbedMdiManager1 = new Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager(this.components);
-            this.imgListMenu = new System.Windows.Forms.ImageList(this.components);
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.btnItems = new System.Windows.Forms.ToolStripMenuItem();
             this.btnWarehouse = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,12 +37,19 @@
             this.btnDocTypes = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUMed = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnMovs = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnFisicInventory = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.btnReports = new System.Windows.Forms.ToolStripButton();
-            this.btnExit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnUsers = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnExit = new System.Windows.Forms.ToolStripButton();
+            this.ultraTabbedMdiManager1 = new Infragistics.Win.UltraWinTabbedMdi.UltraTabbedMdiManager(this.components);
+            this.imgListMenu = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ultraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -74,37 +75,6 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
-            // 
-            // ultraTabbedMdiManager1
-            // 
-            this.ultraTabbedMdiManager1.MdiParent = this;
-            this.ultraTabbedMdiManager1.ViewStyle = Infragistics.Win.UltraWinTabbedMdi.ViewStyle.VisualStudio2005;
-            // 
-            // imgListMenu
-            // 
-            this.imgListMenu.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imgListMenu.ImageSize = new System.Drawing.Size(16, 16);
-            this.imgListMenu.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
-            // 
             // toolStripDropDownButton1
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -114,7 +84,8 @@
             this.btnCategories,
             this.btnDocTypes,
             this.clientesToolStripMenuItem,
-            this.proveedoresToolStripMenuItem});
+            this.proveedoresToolStripMenuItem,
+            this.btnUMed});
             this.toolStripDropDownButton1.Image = global::InventarioFacil.Properties.Resources.catalog;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -164,6 +135,18 @@
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             this.proveedoresToolStripMenuItem.Click += new System.EventHandler(this.proveedoresToolStripMenuItem_Click);
             // 
+            // btnUMed
+            // 
+            this.btnUMed.Name = "btnUMed";
+            this.btnUMed.Size = new System.Drawing.Size(189, 22);
+            this.btnUMed.Text = "Unidades de Medida";
+            this.btnUMed.Click += new System.EventHandler(this.btnUMed_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
             // btnMovs
             // 
             this.btnMovs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -173,6 +156,11 @@
             this.btnMovs.Size = new System.Drawing.Size(36, 36);
             this.btnMovs.ToolTipText = "Movimientos al Inventario";
             this.btnMovs.Click += new System.EventHandler(this.btnMovs_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // btnFisicInventory
             // 
@@ -184,6 +172,11 @@
             this.btnFisicInventory.ToolTipText = "Inventario Físico";
             this.btnFisicInventory.Click += new System.EventHandler(this.btnFisicInventory_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 39);
+            // 
             // btnReports
             // 
             this.btnReports.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -193,15 +186,10 @@
             this.btnReports.Size = new System.Drawing.Size(36, 36);
             this.btnReports.ToolTipText = "Reportes";
             // 
-            // btnExit
+            // toolStripSeparator4
             // 
-            this.btnExit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExit.Image = global::InventarioFacil.Properties.Resources.exit_icon;
-            this.btnExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(36, 36);
-            this.btnExit.Text = "toolStripButton3";
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
             // 
             // btnUsers
             // 
@@ -217,6 +205,27 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 39);
+            // 
+            // btnExit
+            // 
+            this.btnExit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExit.Image = global::InventarioFacil.Properties.Resources.exit_icon;
+            this.btnExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(36, 36);
+            this.btnExit.Text = "toolStripButton3";
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // ultraTabbedMdiManager1
+            // 
+            this.ultraTabbedMdiManager1.MdiParent = this;
+            this.ultraTabbedMdiManager1.ViewStyle = Infragistics.Win.UltraWinTabbedMdi.ViewStyle.VisualStudio2005;
+            // 
+            // imgListMenu
+            // 
+            this.imgListMenu.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imgListMenu.ImageSize = new System.Drawing.Size(16, 16);
+            this.imgListMenu.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // frmMain
             // 
@@ -259,5 +268,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripButton btnUsers;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem btnUMed;
     }
 }

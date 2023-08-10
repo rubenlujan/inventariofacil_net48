@@ -73,6 +73,7 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +86,9 @@
     <Compile Include="DBServices\ConnectionToMySql.cs" />
     <Compile Include="DBServices\DocTypesDA.cs" />
     <Compile Include="DBServices\Entities\Catalog.cs" />
+    <Compile Include="DBServices\DocInvDA.cs" />
+    <Compile Include="DBServices\Entities\DocInv.cs" />
+    <Compile Include="DBServices\Entities\DocInvList.cs" />
     <Compile Include="DBServices\Entities\DocType.cs" />
     <Compile Include="DBServices\Entities\Item.cs" />
     <Compile Include="DBServices\Entities\User.cs" />

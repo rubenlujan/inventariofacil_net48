@@ -253,7 +253,7 @@ namespace InventarioFacil
             EnabledButtons(false);
             EnabledFields(true);
             itemPhoto.Image = null;
-            itemId = new MetodosGenerales().RegresaCampoNumerico("SELECT MAX(ItemId) FROM items", ref message);
+            itemId = new MetodosGenerales().RegresaCampoNumerico("SELECT COALESCE(MAX(itemid), 0) + 1 FROM items", ref message);
             if (message.Length > 0)
             {
                 MessageBox.Show("Ha ocurrido el siguiente error:" + message);
@@ -262,7 +262,6 @@ namespace InventarioFacil
                 else
                     this.Close();
             }
-            itemId += 1;
             txtItem.Text = itemId.ToString();
             tipoMovimiento = TipoAccion.Alta;
         }

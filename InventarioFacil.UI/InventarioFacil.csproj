@@ -102,6 +102,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmDocMov.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDocMov.Designer.cs">
+      <DependentUpon>frmDocMov.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUMed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUMed.Designer.cs">
+      <DependentUpon>frmUMed.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCategoriesDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +186,12 @@
     <Compile Include="frmDocTypes.Designer.cs">
       <DependentUpon>frmDocTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmVentana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVentana.Designer.cs">
+      <DependentUpon>frmVentana.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmWarehouse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +206,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilerias.cs" />
+    <EmbeddedResource Include="frmDocMov.resx">
+      <DependentUpon>frmDocMov.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUMed.resx">
+      <DependentUpon>frmUMed.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCategoriesDetail.resx">
       <DependentUpon>frmCategoriesDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -223,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDocTypes.resx">
       <DependentUpon>frmDocTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVentana.resx">
+      <DependentUpon>frmVentana.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWarehouse.resx">
       <DependentUpon>frmWarehouse.cs</DependentUpon>
@@ -378,6 +406,7 @@
     <None Include="images\items.png" />
     <None Include="images\login_img.png" />
     <None Include="images\Reports_4.png" />
+    <None Include="images\Question2.png" />
     <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

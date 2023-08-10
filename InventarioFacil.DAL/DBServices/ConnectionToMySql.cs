@@ -57,6 +57,25 @@ namespace InventarioFacil.DAL.DBServices
             }
         }
 
+        protected DataTable ExecuteDataTable(string strQuery, ref string message)
+        {
+            try
+            {
+                var connection = GetConnection();
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand(strQuery, connection);
+                cmd.CommandType = System.Data.CommandType.Text;
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;  
+            }
+            catch(Exception ex) 
+            {
+                return null;
+            }
+        } 
+
         protected void CloseConnection()
         {
             if(connection != null && connection.State == ConnectionState.Open)

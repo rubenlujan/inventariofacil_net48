@@ -1,15 +1,11 @@
 ﻿using InventarioFacil.Common;
 using InventarioFacil.DAL.DBServices.Entities;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI.Common;
-using Org.BouncyCastle.Asn1.X500;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
+using System.Data;
+using System.Windows.Forms;
+using InventarioFacil;
 
 namespace InventarioFacil.DAL.DBServices
 {
@@ -33,13 +29,44 @@ namespace InventarioFacil.DAL.DBServices
                         result = Convert.ToInt16(reader[0]);
 
                 }
-            } 
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 result = -1;
                 message = ex.Message;
             }
-            finally 
+            finally
+            {
+                CloseConnection();
+            }
+            return result;
+        }
+
+        public string RegresaCampoAlfanumerico(string strQuery, ref string message)
+        {
+            string result = string.Empty;
+            try
+            {
+                var reader = ExecuteDataReader(strQuery, ref message);
+                if (message.Length > 0)
+                {
+                    return string.Empty;
+                }
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    if (reader[0] != DBNull.Value)
+                        result = reader[0].ToString();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                result = string.Empty;
+                message = ex.Message;
+            }
+            finally
             {
                 CloseConnection();
             }
@@ -56,10 +83,10 @@ namespace InventarioFacil.DAL.DBServices
                 {
                     throw new Exception(message);
                 }
-                while(reader.Read())
+                while (reader.Read())
                 {
                     var value = int.Parse(reader[0].ToString());
-                    var descrip = reader[1].ToString(); 
+                    var descrip = reader[1].ToString();
                     list.Add(new ComboEntity { Description = descrip, Value = value });
                 }
             }
@@ -103,5 +130,35 @@ namespace InventarioFacil.DAL.DBServices
             return result;
         }
 
+        public DataTable ReturnDataTable(string strQuery, ref string message)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = ExecuteDataTable(strQuery, ref message);
+            }
+            catch (Exception ex)
+            {
+                message += ex.Message;
+            }
+            finally {
+                CloseConnection();
+            }
+            return dt;
+        }
+
+        public IDataReader ReturnDataReader(string strQuery, ref string message)
+        {
+            IDataReader dr = null;
+            try
+            {
+                dr = ExecuteDataReader(strQuery, ref message);
+            }
+            catch (Exception ex)
+            {
+                message += ex.Message;
+            }
+            return dr;
+        }
     }
 }

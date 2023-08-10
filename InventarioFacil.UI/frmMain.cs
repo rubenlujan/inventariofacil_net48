@@ -96,5 +96,10 @@ namespace InventarioFacil
         {
             MessageBox.Show("Opción en desarrollo");
         }
+
+        private void btnUMed_Click(object sender, EventArgs e)
+        {
+            ShowForm("InventarioFacil.frmUMed", 1);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace InventarioFacil
 {
-    partial class frmDocInv
+    partial class frmVentana
     {
         /// <summary>
         /// Required designer variable.
@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocInv));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.c1Ribbon1 = new C1.Win.C1Ribbon.C1Ribbon();
             this.ribbonApplicationMenu1 = new C1.Win.C1Ribbon.RibbonApplicationMenu();
             this.bottomBar = new C1.Win.C1Ribbon.RibbonBottomToolBar();
@@ -39,24 +37,19 @@
             this.rgActions = new C1.Win.C1Ribbon.RibbonGroup();
             this.btnNew = new C1.Win.C1Ribbon.RibbonButton();
             this.ribbonSeparator1 = new C1.Win.C1Ribbon.RibbonSeparator();
-            this.btnPrint = new C1.Win.C1Ribbon.RibbonButton();
             this.rgSearch = new C1.Win.C1Ribbon.RibbonGroup();
             this.tbSearch = new C1.Win.C1Ribbon.RibbonToolBar();
             this.ribbonLabel1 = new C1.Win.C1Ribbon.RibbonLabel();
-            this.cboFields = new C1.Win.C1Ribbon.RibbonComboBox();
+            this.cboSearchFields = new C1.Win.C1Ribbon.RibbonComboBox();
             this.ribbonLabel2 = new C1.Win.C1Ribbon.RibbonLabel();
             this.txtSearchText = new C1.Win.C1Ribbon.RibbonTextBox();
             this.ribbonButton2 = new C1.Win.C1Ribbon.RibbonButton();
-            this.rgReports = new C1.Win.C1Ribbon.RibbonGroup();
-            this.btnHMovs = new C1.Win.C1Ribbon.RibbonButton();
-            this.btnInvCost = new C1.Win.C1Ribbon.RibbonButton();
-            this.btnInvAlm = new C1.Win.C1Ribbon.RibbonButton();
             this.rgExit = new C1.Win.C1Ribbon.RibbonGroup();
             this.btnExit = new C1.Win.C1Ribbon.RibbonButton();
             this.ribbonTopToolBar1 = new C1.Win.C1Ribbon.RibbonTopToolBar();
-            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.gvVentana = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.c1Ribbon1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvVentana)).BeginInit();
             this.SuspendLayout();
             // 
             // c1Ribbon1
@@ -67,7 +60,7 @@
             this.c1Ribbon1.Location = new System.Drawing.Point(0, 0);
             this.c1Ribbon1.Name = "c1Ribbon1";
             this.c1Ribbon1.QatHolder = this.ribbonQat1;
-            this.c1Ribbon1.Size = new System.Drawing.Size(1069, 132);
+            this.c1Ribbon1.Size = new System.Drawing.Size(800, 132);
             this.c1Ribbon1.Tabs.Add(this.ribbonTab1);
             this.c1Ribbon1.TopToolBarHolder = this.ribbonTopToolBar1;
             this.c1Ribbon1.VisualStyle = C1.Win.C1Ribbon.VisualStyle.Office2010Blue;
@@ -95,7 +88,6 @@
             // 
             this.ribbonTab1.Groups.Add(this.rgActions);
             this.ribbonTab1.Groups.Add(this.rgSearch);
-            this.ribbonTab1.Groups.Add(this.rgReports);
             this.ribbonTab1.Groups.Add(this.rgExit);
             this.ribbonTab1.Name = "ribbonTab1";
             this.ribbonTab1.Text = "Acciones";
@@ -105,9 +97,8 @@
             this.rgActions.CanBeAddedToQat = false;
             this.rgActions.Items.Add(this.btnNew);
             this.rgActions.Items.Add(this.ribbonSeparator1);
-            this.rgActions.Items.Add(this.btnPrint);
             this.rgActions.Name = "rgActions";
-            this.rgActions.Text = "Procesos";
+            this.rgActions.Text = "Nuevo";
             // 
             // btnNew
             // 
@@ -115,19 +106,11 @@
             this.btnNew.LargeImage = global::InventarioFacil.Properties.Resources.anadir_48;
             this.btnNew.Name = "btnNew";
             this.btnNew.SupportedGroupSizing = C1.Win.C1Ribbon.SupportedGroupSizing.LargeImageOnly;
-            this.btnNew.Text = "Nuevo";
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            this.btnNew.TextImageRelation = C1.Win.C1Ribbon.TextImageRelation.ImageBeforeText;
             // 
             // ribbonSeparator1
             // 
             this.ribbonSeparator1.Name = "ribbonSeparator1";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.LargeImage = global::InventarioFacil.Properties.Resources.impresora;
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.SmallImage")));
-            this.btnPrint.Text = "Imprimir";
             // 
             // rgSearch
             // 
@@ -138,7 +121,7 @@
             // tbSearch
             // 
             this.tbSearch.Items.Add(this.ribbonLabel1);
-            this.tbSearch.Items.Add(this.cboFields);
+            this.tbSearch.Items.Add(this.cboSearchFields);
             this.tbSearch.Items.Add(this.ribbonLabel2);
             this.tbSearch.Items.Add(this.txtSearchText);
             this.tbSearch.Items.Add(this.ribbonButton2);
@@ -149,9 +132,9 @@
             this.ribbonLabel1.Name = "ribbonLabel1";
             this.ribbonLabel1.Text = "Buscar en";
             // 
-            // cboFields
+            // cboSearchFields
             // 
-            this.cboFields.Name = "cboFields";
+            this.cboSearchFields.Name = "cboSearchFields";
             // 
             // ribbonLabel2
             // 
@@ -167,32 +150,6 @@
             this.ribbonButton2.Name = "ribbonButton2";
             this.ribbonButton2.SmallImage = global::InventarioFacil.Properties.Resources.search;
             this.ribbonButton2.Click += new System.EventHandler(this.ribbonButton2_Click);
-            // 
-            // rgReports
-            // 
-            this.rgReports.Items.Add(this.btnHMovs);
-            this.rgReports.Items.Add(this.btnInvCost);
-            this.rgReports.Items.Add(this.btnInvAlm);
-            this.rgReports.Name = "rgReports";
-            this.rgReports.Text = "Reportes";
-            // 
-            // btnHMovs
-            // 
-            this.btnHMovs.Name = "btnHMovs";
-            this.btnHMovs.SmallImage = global::InventarioFacil.Properties.Resources.reports32;
-            this.btnHMovs.Text = "Historial de Movimientos";
-            // 
-            // btnInvCost
-            // 
-            this.btnInvCost.Name = "btnInvCost";
-            this.btnInvCost.SmallImage = global::InventarioFacil.Properties.Resources.reports32;
-            this.btnInvCost.Text = "Inventario Costeado";
-            // 
-            // btnInvAlm
-            // 
-            this.btnInvAlm.Name = "btnInvAlm";
-            this.btnInvAlm.SmallImage = global::InventarioFacil.Properties.Resources.reports32;
-            this.btnInvAlm.Text = "Inventario por Almacén";
             // 
             // rgExit
             // 
@@ -210,43 +167,35 @@
             // 
             this.ribbonTopToolBar1.Name = "ribbonTopToolBar1";
             // 
-            // dgvData
+            // gvVentana
             // 
-            this.dgvData.AllowUserToAddRows = false;
-            this.dgvData.AllowUserToDeleteRows = false;
-            this.dgvData.AllowUserToResizeColumns = false;
-            this.dgvData.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.dgvData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dgvData.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvData.Location = new System.Drawing.Point(0, 132);
-            this.dgvData.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvData.MultiSelect = false;
-            this.dgvData.Name = "dgvData";
-            this.dgvData.ReadOnly = true;
-            this.dgvData.RowHeadersWidth = 51;
-            this.dgvData.RowTemplate.Height = 24;
-            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1069, 440);
-            this.dgvData.TabIndex = 3;
+            this.gvVentana.AllowUserToAddRows = false;
+            this.gvVentana.AllowUserToDeleteRows = false;
+            this.gvVentana.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.gvVentana.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvVentana.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gvVentana.Location = new System.Drawing.Point(0, 132);
+            this.gvVentana.Name = "gvVentana";
+            this.gvVentana.ReadOnly = true;
+            this.gvVentana.Size = new System.Drawing.Size(800, 318);
+            this.gvVentana.TabIndex = 9;
+            this.gvVentana.DoubleClick += new System.EventHandler(this.gvVentana_DoubleClick);
             // 
-            // frmDocInv
+            // frmVentana
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 572);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
-            this.Controls.Add(this.dgvData);
+            this.Controls.Add(this.gvVentana);
             this.Controls.Add(this.c1Ribbon1);
-            this.Name = "frmDocInv";
-            this.Text = "Movimientos al inventario";
-            this.Load += new System.EventHandler(this.frmDocInv_Load);
+            this.Name = "frmVentana";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.Text = "Ventana";
+            this.Load += new System.EventHandler(this.frmVentana_Load);
             ((System.ComponentModel.ISupportInitialize)(this.c1Ribbon1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvVentana)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,23 +210,18 @@
         private C1.Win.C1Ribbon.RibbonQat ribbonQat1;
         private C1.Win.C1Ribbon.RibbonTab ribbonTab1;
         private C1.Win.C1Ribbon.RibbonGroup rgActions;
-        private C1.Win.C1Ribbon.RibbonTopToolBar ribbonTopToolBar1;
         private C1.Win.C1Ribbon.RibbonButton btnNew;
-        private C1.Win.C1Ribbon.RibbonButton btnPrint;
         private C1.Win.C1Ribbon.RibbonSeparator ribbonSeparator1;
-        private C1.Win.C1Ribbon.RibbonGroup rgReports;
-        private C1.Win.C1Ribbon.RibbonButton btnHMovs;
-        private C1.Win.C1Ribbon.RibbonButton btnInvCost;
-        private C1.Win.C1Ribbon.RibbonButton btnInvAlm;
         private C1.Win.C1Ribbon.RibbonGroup rgSearch;
         private C1.Win.C1Ribbon.RibbonToolBar tbSearch;
         private C1.Win.C1Ribbon.RibbonLabel ribbonLabel1;
-        private C1.Win.C1Ribbon.RibbonComboBox cboFields;
+        private C1.Win.C1Ribbon.RibbonComboBox cboSearchFields;
         private C1.Win.C1Ribbon.RibbonLabel ribbonLabel2;
         private C1.Win.C1Ribbon.RibbonTextBox txtSearchText;
         private C1.Win.C1Ribbon.RibbonButton ribbonButton2;
         private C1.Win.C1Ribbon.RibbonGroup rgExit;
         private C1.Win.C1Ribbon.RibbonButton btnExit;
-        private System.Windows.Forms.DataGridView dgvData;
+        private C1.Win.C1Ribbon.RibbonTopToolBar ribbonTopToolBar1;
+        private System.Windows.Forms.DataGridView gvVentana;
     }
 }
