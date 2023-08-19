@@ -109,6 +109,7 @@ namespace InventarioFacil
             this.Cursor = Cursors.Default;
 
         }
+
         #endregion
 
         private void dgvItems_DoubleClick(object sender, EventArgs e)

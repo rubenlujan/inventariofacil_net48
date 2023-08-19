@@ -229,7 +229,7 @@ namespace InventarioFacil.DAL.DBServices
                     using (var command = new MySqlCommand())
                     {
                         command.Connection = connection;
-                        command.CommandType = System.Data.CommandType.StoredProcedure;
+                        command.CommandType = CommandType.StoredProcedure;
                         command.CommandText = "usp_DeleteItem";
                         command.Parameters.AddWithValue("@Id", itemId);
                         command.ExecuteNonQuery();
@@ -246,6 +246,37 @@ namespace InventarioFacil.DAL.DBServices
             }
 
             return result;
+        }
+
+        public List<MovInv> GetKardex(int itemId)
+        {
+            List<MovInv> list = new List<MovInv>();
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "usp_GetKardexByItem";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_itemId", itemId);
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        var item = new MovInv();
+                        item.Almacen = reader.GetString("warehouse");
+                        item.Concepto = reader.GetString("concept");
+                        item.DocNum = reader.GetString("docnum");
+                        item.Fecha = reader.GetString("docdate");
+                        item.Cantidad = reader.GetString("quantity");
+                        item.Precio_U = reader.GetString("price_u");
+                        item.Costo_U = reader.GetString("cost_u");
+                        list.Add(item);
+                    }
+                }
+            }
+            return list;
         }
     }
 }

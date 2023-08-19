@@ -1,4 +1,5 @@
-﻿using InventarioFacil.Common;
+﻿using Infragistics.Win.Layout;
+using InventarioFacil.Common;
 using InventarioFacil.DAL.DBServices;
 using InventarioFacil.DAL.DBServices.Entities;
 using System;
@@ -17,7 +18,7 @@ namespace InventarioFacil
     {
         string strQuery;
         string message;
-        DocInv docinvEntity;
+        public DocInv docinvEntity;
 
         public frmDocMov()
         {
@@ -35,15 +36,31 @@ namespace InventarioFacil
         }
 
         #region Methods
+
+        private void FillCombo()
+        {
+            message = string.Empty;
+            strQuery = "Select Id, Description FROM warehouse";
+            var warehouses = new MetodosGenerales().RegresaCatalogoCombo(strQuery, ref message);
+            SetComboData(cboAlmacen, warehouses);
+        }
+
+        private void SetComboData<T>(ComboBox comboControl, List<T> listData)
+        {
+            comboControl.ValueMember = "Value";
+            comboControl.DisplayMember = "Description";
+            comboControl.DataSource = listData;
+        }
+
         private void NewRecord()
         {
-            docinvEntity = new DocInv();    
+            GlobalData.TipoEdicion = TipoAccion.Alta;
+            docinvEntity = new DocInv(); 
+            gvArticulos.Rows.Clear();
             ClearFields();
             EnabledButtons(false);
             EnabledFields(true);
-            txtAlmacen.Focus();
-            GlobalData.TipoEdicion = TipoAccion.Alta;
-
+            txtConcepto.Focus();
         }
 
         private void ClearFields()
@@ -55,8 +72,7 @@ namespace InventarioFacil
             }
             txtCostoU.Text = "0";
             txtPrecioU.Text = "0";
-            txtStatus.Text = "Pendiente";
-            lblAlmacen.Text = "";
+            txtStatus.Text = "PENDIENTE";
             lblConcepto.Text = "";
         }
 
@@ -67,6 +83,9 @@ namespace InventarioFacil
                 if (control.Tag != null && control.Tag.ToString() == "input")
                     control.Enabled = enabled;
             }
+            dtFecha.Enabled = enabled;
+            cboAlmacen.Enabled = GlobalData.TipoEdicion == TipoAccion.Alta;
+            txtConcepto.Enabled = string.IsNullOrEmpty(txtConcepto.Text);
         }
 
         private void EnabledButtons(bool bEnable)
@@ -86,12 +105,21 @@ namespace InventarioFacil
                 btnGrabar.Enabled = false;
                 btnCancelar.Enabled = false;
             }
-
+            if(txtStatus.Text == "ACTUALIZA" || txtStatus.Text == "CANCELADO")
+            {
+                btnCancel.Enabled = txtStatus.Text == "ACTUALIZA" ? true : false;   
+                btnBorrar.Enabled = false;
+                btnEditar.Enabled = false;
+            } 
+            else
+            {
+                btnCancel.Enabled = false;  
+            }
         }
 
         private void FillDocInvEntity()
         {
-            docinvEntity.warehouse = int.Parse(txtAlmacen.Text);
+            docinvEntity.warehouse = (int)cboAlmacen.SelectedValue;
             docinvEntity.doctype = txtConcepto.Text;
             docinvEntity.docnum = txtNumero.Text;
             docinvEntity.datemov = dtFecha.Value;
@@ -113,10 +141,9 @@ namespace InventarioFacil
         {
             int regresa = cantidad;
             int existencia;
-            int tipo;
             message = string.Empty;
 
-            strQuery = "SELECT Actual_Stock FROM itemsstock WHERE Item_Id=" + codigo + " and warehouse_id = " + txtAlmacen.Text;
+            strQuery = "SELECT Actual_Stock FROM itemsstock WHERE Item_Id=" + codigo + " and warehouse_id = " + cboAlmacen.SelectedValue;
             existencia = new MetodosGenerales().RegresaCampoNumerico(strQuery, ref message);
             if (cantidad > existencia)
             {
@@ -135,19 +162,137 @@ namespace InventarioFacil
             txtCantidad.Text = "";
         }
 
+        private OperationResult CancelDocument()
+        {
+            DialogResult resp = MessageBox.Show("¿Desea cancelar el documento?", "?", MessageBoxButtons.YesNo);
+            OperationResult result = new OperationResult();
+            if (resp == DialogResult.Yes)
+            {
+                result = new DocInvDA().DocInvRes(docinvEntity);
+                if (result.ResultId == 200)
+                    txtStatus.Text = "CANCELADO";
+                else
+                    MessageBox.Show("Error:" + result.Message);
+
+                return result;
+            }
+            return null; 
+
+        }
+
+        private void SaveData()
+        {
+            message = string.Empty;
+            try
+            {
+                if (GlobalData.TipoEdicion != TipoAccion.Baja)
+                {
+                    var docinvDA = new DocInvDA();
+
+                    docinvEntity.datemov = dtFecha.Value;
+                    docinvEntity.notes = txtComentarios.Text;
+                    docinvEntity.status = txtStatus.Text;
+                    var result = docinvDA.AddUpdateDocInv(docinvEntity);
+
+                    if (result.ResultId != 200)
+                    {
+                        MessageBox.Show("Error:" + result.Message);
+                        return;
+                    }
+                    if(gvArticulos.Rows.Count > 0)
+                    {
+                        InsertItems();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido el siguiente error: " + ex.Message + ". Comuniquese con sistemas");
+            }
+            EnabledFields(false);
+            EnabledButtons(true);   
+            GlobalData.ReloadGrid = true;
+        }
+       
+        private void InsertItems()
+        {
+            var docinvDA = new DocInvDA();
+            var result = docinvDA.DeleteDocMov(docinvEntity);
+            int cont = 0;
+            while (cont <= gvArticulos.Rows.Count - 1)
+            {
+                var docmovEntity = new DocMov();
+                docmovEntity.warehouse = docinvEntity.warehouse;
+                docmovEntity.doctype = docinvEntity.doctype;
+                docmovEntity.docnum = docinvEntity.docnum;
+                docmovEntity.part = int.Parse(gvArticulos.Rows[cont].Cells[0].Value.ToString());
+                docmovEntity.item_id = int.Parse(gvArticulos.Rows[cont].Cells[1].Value.ToString());
+                docmovEntity.quantity = decimal.Parse(gvArticulos.Rows[cont].Cells[3].Value.ToString());
+                docmovEntity.price_u = decimal.Parse(gvArticulos.Rows[cont].Cells[4].Value.ToString());
+                docmovEntity.cost_u = decimal.Parse(gvArticulos.Rows[cont].Cells[5].Value.ToString());
+
+                result = docinvDA.AddDocmov(docmovEntity);
+
+                if (result.ResultId != 200)
+                    MessageBox.Show("Error:" + result.Message);
+
+                cont++;
+            }
+
+            DialogResult resp = MessageBox.Show("¿Desea actualizar el inventario?", "?", MessageBoxButtons.YesNo);
+            if (resp == DialogResult.Yes)
+            {
+                result = docinvDA.DocInvAfe(docinvEntity);
+
+                if (result.ResultId != 200)
+                {
+                    MessageBox.Show("Error:" + result.Message, "Error");
+                }
+                else
+                {
+                    MessageBox.Show("Registro actualizado");
+                    txtStatus.Text = "ACTUALIZA";
+                }
+            }
+        }
+        
+        private void LoadData()
+        {
+            if(docinvEntity != null)
+            {
+                cboAlmacen.Text = docinvEntity.warehouse_dsc;
+                txtConcepto.Text = docinvEntity.doctype.ToString();
+                txtNumero.Text = docinvEntity.docnum.ToString();
+                dtFecha.Value = docinvEntity.datemov;
+                txtComentarios.Text = docinvEntity.notes.ToString();
+                txtStatus.Text = docinvEntity.status.ToString();
+                GetItems();
+                EnabledFields(false);
+            }
+            EnabledButtons(true);
+        }
+
+        private void GetItems()
+        {
+            var lstItems = new DocInvDA().GetDocMovDetail(docinvEntity);
+            object[] Param = new object[6];
+            foreach(DocMov item in lstItems)
+            {
+                Param[0] = item.part;
+                Param[1] = item.item_id.ToString();
+                Param[2] = item.item_dsc;
+                Param[3] = item.quantity.ToString();    
+                Param[4] = item.price_u.ToString();
+                Param[5] = item.cost_u.ToString();
+                gvArticulos.Rows.Add(Param);
+            }
+        }
         #endregion
 
         private void txtConcepto_Leave(object sender, EventArgs e)
         {
             if (txtConcepto.Text != "" && txtConcepto.Enabled)
             {
-                if (txtAlmacen.Text == "")
-                {
-                    MessageBox.Show("Debe capturar un almacen");
-                    txtAlmacen.Focus();
-                    txtConcepto.Text = "";
-                    return;
-                }
                 message = String.Empty;
 
                 strQuery = "SELECT description FROM doctypes WHERE id='" + txtConcepto.Text + "'";
@@ -161,7 +306,7 @@ namespace InventarioFacil
                 else
                 {
                     Int16 cons;
-                    strQuery = "SELECT COALESCE(MAX(docnum), 0) + 1 FROM docinv WHERE warehouse='" + txtAlmacen.Text + "' AND doctype='" + txtConcepto.Text + "'";
+                    strQuery = "SELECT COALESCE(MAX(docnum), 0) + 1 FROM docinv WHERE warehouse='" + cboAlmacen.SelectedValue + "' AND doctype='" + txtConcepto.Text + "'";
                     cons = new MetodosGenerales().RegresaCampoNumerico(strQuery, ref message);
                     txtNumero.Text = cons.ToString("000000");
                     txtNumero.Enabled = false;
@@ -172,7 +317,7 @@ namespace InventarioFacil
                         dtFecha.Focus();
                         gbItems.Enabled = true;
                         txtConcepto.Enabled = false;
-                        txtAlmacen.Enabled = false;
+                        cboAlmacen.Enabled = false;
                     }
                 }
             }
@@ -180,8 +325,14 @@ namespace InventarioFacil
 
         private void frmDocMov_Load(object sender, EventArgs e)
         {
-            if(GlobalData.TipoEdicion == TipoAccion.Alta)
+            FillCombo();
+
+            if (GlobalData.TipoEdicion == TipoAccion.Alta)
                 NewRecord();
+            else
+                LoadData();
+
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -216,47 +367,6 @@ namespace InventarioFacil
             }*/
         }
 
-        private void btnAlmacen_Click(object sender, EventArgs e)
-        {
-            if (txtAlmacen.Enabled == false)
-                return;
-
-            strQuery = "SELECT id, description as Descripcion FROM warehouse order by id";
-            Utilerias.OpenWindow(strQuery, txtAlmacen, "Almacenes");
-            txtAlmacen_Leave(sender, e);
-            //this.ProcessTabKey(true);
-        }
-
-        private void txtAlmacen_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                e.Handled = true;
-                this.ProcessTabKey(true);
-            }
-        }
-
-        private void txtAlmacen_Leave(object sender, EventArgs e)
-        {
-            if (txtAlmacen.Text != "" && txtAlmacen.Enabled)
-            {
-                message = string.Empty;
-                strQuery = "SELECT description FROM warehouse WHERE id=" + txtAlmacen.Text;
-                lblAlmacen.Text = new MetodosGenerales().RegresaCampoAlfanumerico(strQuery, ref message);
-                
-                if (lblAlmacen.Text != "")
-                {
-                    txtConcepto.Focus();
-                    return;
-                }
-                MessageBox.Show("No existe esta clave");
-                txtAlmacen.Text = "";
-                txtAlmacen.Focus();
-                return;
-                
-            }
-        }
-
         private void txtConcepto_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
@@ -286,17 +396,16 @@ namespace InventarioFacil
 
         private void txtArticulo_Leave(object sender, EventArgs e)
         {
-            if (txtArticulo.Text != "")
+            if (!string.IsNullOrEmpty(txtArticulo.Text))
             {
                 message = String.Empty;
-                strQuery = "SELECT Descripcion, Precio_U, Costo_U FROM items_data WHERE Id=" + txtArticulo.Text;
-                var rdr = new MetodosGenerales().ReturnDataReader(strQuery, ref message);
-
+                var rdr = new MetodosGenerales().ReturnDataReader("SELECT Id,Descripcion, Precio_U, Costo_U FROM items_data WHERE Id=" + txtArticulo.Text + " or SKU = '" + txtArticulo.Text + "' or codigobarras = '" + txtArticulo + "'", ref message);
                 if (rdr.Read())
                 {
-                    lblArticulo.Text = rdr[0].ToString();
-                    txtPrecioU.Text = decimal.Parse(rdr[1].ToString()).ToString("N2");
-                    txtCostoU.Text = decimal.Parse(rdr[2].ToString()).ToString("N2");
+                    txtArticulo.Text = rdr[0].ToString();
+                    lblArticulo.Text = rdr[1].ToString();
+                    txtPrecioU.Text = decimal.Parse(rdr[2].ToString()).ToString("N2");
+                    txtCostoU.Text = decimal.Parse(rdr[3].ToString()).ToString("N2");
                     txtCantidad.Focus();
                 }
                 else
@@ -305,8 +414,12 @@ namespace InventarioFacil
                     txtArticulo.Text = "";
                     txtArticulo.Focus();
                 }
-
                 rdr.Close();
+            }
+            else
+            {
+                MessageBox.Show("Debe introducir un código");
+                txtArticulo.Focus();
             }
         }
 
@@ -316,10 +429,10 @@ namespace InventarioFacil
             int cant;
             message = String.Empty;
 
-            if (Convert.ToInt32(txtCantidad.Text) == 0 || lblArticulo.Text.Length == 0)
+            if (string.IsNullOrEmpty(txtCantidad.Text) || int.Parse(txtCantidad.Text) == 0 || lblArticulo.Text.Length == 0)
             {
                 MessageBox.Show("Complete todos los campos.");
-                if (lblArticulo.Text.Length == 0 ? txtArticulo.Focus() : txtCantidad.Focus()) ;
+                if (lblArticulo.Text.Length == 0 ? txtArticulo.Focus() : txtCantidad.Focus());
 
                 return;
             }
@@ -339,7 +452,6 @@ namespace InventarioFacil
             else
                 cant = Convert.ToInt16(txtCantidad.Text);
 
-            double importe;
             object[] Param = new object[6];
             Param[0] = gvArticulos.Rows.Count + 1;
             Param[1] = txtArticulo.Text;
@@ -382,6 +494,71 @@ namespace InventarioFacil
         }
 
         private void txtArticulo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                e.Handled = true;
+                this.ProcessTabKey(true);
+            }
+        }
+
+        private void gvArticulos_DoubleClick(object sender, EventArgs e)
+        {
+            if (btnGrabar.Enabled)
+            {
+                DialogResult resp = MessageBox.Show("Desea borrar esta partida?", "?", MessageBoxButtons.YesNo);
+                if (resp == DialogResult.Yes)
+                    gvArticulos.Rows.Remove(gvArticulos.CurrentRow);
+            }
+        }
+
+        private void btnGrabar_Click(object sender, EventArgs e)
+        {
+            SaveData();
+        }
+
+        private void dtFecha_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                e.Handled = true;
+                this.ProcessTabKey(true);
+            }
+        }
+
+        private void dtFecha_Leave(object sender, EventArgs e)
+        {
+            txtArticulo.Focus();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            EnabledFields(true);
+            EnabledButtons(false);
+            gbItems.Enabled = true;
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            var result = CancelDocument();
+            if(result != null && result.ResultId == 200)
+            {
+                MessageBox.Show("Documento cancelado");
+                EnabledButtons(true);
+                GlobalData.ReloadGrid = true;
+            }
+        }
+
+        private void frmDocMov_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F4)
+            {
+                btnGrabar_Click(sender, e);
+            }
+        }
+
+        private void cboAlmacen_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)
             {

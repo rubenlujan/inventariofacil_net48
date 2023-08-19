@@ -9,6 +9,7 @@ namespace InventarioFacil.DAL.DBServices.Entities
     public class DocInv
     {
         public int warehouse { get; set; }
+        public string  warehouse_dsc { get; set; }  
         public string doctype { get; set; }  
         public string docnum { get; set; }  
         public DateTime datemov { get ; set; }  

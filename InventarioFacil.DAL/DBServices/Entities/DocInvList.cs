@@ -8,7 +8,9 @@ namespace InventarioFacil.DAL.DBServices.Entities
 {
     public class DocInvList
     {
-        public string Almacen { get; set; } 
+        public int AlmacenId { get; set; }  
+        public string Almacen { get; set; }
+        public string ConceptoId { get; set; }
         public string Concepto { get; set; }    
         public string NumDoc { get; set; }  
         public string Fecha { get; set; }   

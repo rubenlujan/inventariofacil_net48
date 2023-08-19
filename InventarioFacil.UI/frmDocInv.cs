@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -30,7 +31,6 @@ namespace InventarioFacil
         #region Methods
         private void LoadData()
         {
-            this.Cursor = Cursors.WaitCursor;
             try
             {
                 if (!GlobalData.ReloadGrid)
@@ -66,7 +66,7 @@ namespace InventarioFacil
 
             foreach (DocInvList item in data)
             {
-                dt.Rows.Add(item.Almacen, item.Concepto, item.NumDoc, item.Fecha, item.Status, item.Cliente, item.Proveedor, item.Notas);
+                dt.Rows.Add(item.AlmacenId, item.Almacen, item.ConceptoId, item.Concepto, item.NumDoc, item.Fecha, item.Status, item.Cliente, item.Proveedor, item.Notas);
             }
             return new DataView(dt);
         }
@@ -79,6 +79,8 @@ namespace InventarioFacil
             {
                 dgvData.Columns[column.Name].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+            dgvData.Columns[0].Visible = false;
+            dgvData.Columns[2].Visible = false;
 
             this.Cursor = Cursors.Default;
 
@@ -104,15 +106,33 @@ namespace InventarioFacil
         {
             frmDocMov frmDMov = new frmDocMov();
             GlobalData.TipoEdicion = TipoAccion.Alta;
-            //actRecord = bs.Count;
-            if (frmDMov.ShowDialog() == DialogResult.OK)
-                return;
-            //    CargaDatos(true);
+            position = bs.Count;
+            frmDMov.ShowDialog();
+            LoadData();
         }
 
         private void ribbonButton2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvData_DoubleClick(object sender, EventArgs e)
+        {
+            frmDocMov frmChild = new frmDocMov();
+            var rowIndex = dgvData.SelectedRows[0];
+            position = rowIndex.Index;
+            frmChild.docinvEntity = new DocInv();
+            frmChild.docinvEntity.warehouse = int.Parse(rowIndex.Cells[0].Value.ToString());
+            frmChild.docinvEntity.warehouse_dsc = rowIndex.Cells[1].Value.ToString();
+            frmChild.docinvEntity.doctype = rowIndex.Cells[2].Value.ToString();
+            frmChild.docinvEntity.docnum = rowIndex.Cells[4].Value.ToString();
+            frmChild.docinvEntity.datemov = DateTime.Parse(rowIndex.Cells[5].Value.ToString());
+            frmChild.docinvEntity.status = rowIndex.Cells[6].Value.ToString();
+            frmChild.docinvEntity.notes = rowIndex.Cells[9].Value.ToString();
+            frmChild.lblConcepto.Text = rowIndex.Cells[3].Value.ToString();
+            GlobalData.TipoEdicion = TipoAccion.Cambio;
+            frmChild.ShowDialog();
+            LoadData();
         }
     }
 }

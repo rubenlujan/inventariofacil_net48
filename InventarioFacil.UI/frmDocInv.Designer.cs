@@ -233,6 +233,7 @@
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(1069, 440);
             this.dgvData.TabIndex = 3;
+            this.dgvData.DoubleClick += new System.EventHandler(this.dgvData_DoubleClick);
             // 
             // frmDocInv
             // 

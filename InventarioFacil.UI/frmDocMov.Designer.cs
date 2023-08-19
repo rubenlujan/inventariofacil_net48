@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -36,6 +36,8 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnBorrar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCancel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.btnGrabar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
@@ -54,11 +56,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblAlmacen = new System.Windows.Forms.Label();
-            this.btnAlmacen = new System.Windows.Forms.Button();
-            this.txtAlmacen = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.gvArticulos = new System.Windows.Forms.DataGridView();
+            this.Partida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Precio_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbItems = new System.Windows.Forms.GroupBox();
             this.txtCantidad = new System.Windows.Forms.MaskedTextBox();
             this.txtPrecioU = new System.Windows.Forms.TextBox();
@@ -71,12 +76,7 @@
             this.lblArticulo = new System.Windows.Forms.Label();
             this.btnArticulo = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.Partida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Precio_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo_U = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboAlmacen = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.gpMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvArticulos)).BeginInit();
@@ -95,6 +95,8 @@
             this.toolStripSeparator2,
             this.btnBorrar,
             this.toolStripSeparator3,
+            this.btnCancel,
+            this.toolStripSeparator6,
             this.btnGrabar,
             this.toolStripSeparator4,
             this.btnCancelar,
@@ -129,6 +131,7 @@
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(51, 52);
             this.btnEditar.ToolTipText = "Editar Registro";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -149,6 +152,21 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(51, 6);
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCancel.Image = global::InventarioFacil.Properties.Resources.canceled;
+            this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(51, 52);
+            this.btnCancel.Text = "toolStripButton1";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(51, 6);
+            // 
             // btnGrabar
             // 
             this.btnGrabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -158,6 +176,7 @@
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(51, 52);
             this.btnGrabar.ToolTipText = "Grabar datos";
+            this.btnGrabar.Click += new System.EventHandler(this.btnGrabar_Click);
             // 
             // toolStripSeparator4
             // 
@@ -192,6 +211,7 @@
             // 
             // gpMain
             // 
+            this.gpMain.Controls.Add(this.cboAlmacen);
             this.gpMain.Controls.Add(this.txtComentarios);
             this.gpMain.Controls.Add(this.label1);
             this.gpMain.Controls.Add(this.lblConcepto);
@@ -204,9 +224,6 @@
             this.gpMain.Controls.Add(this.label3);
             this.gpMain.Controls.Add(this.txtNumero);
             this.gpMain.Controls.Add(this.label2);
-            this.gpMain.Controls.Add(this.lblAlmacen);
-            this.gpMain.Controls.Add(this.btnAlmacen);
-            this.gpMain.Controls.Add(this.txtAlmacen);
             this.gpMain.Controls.Add(this.label7);
             this.gpMain.Location = new System.Drawing.Point(56, 12);
             this.gpMain.Name = "gpMain";
@@ -298,6 +315,8 @@
             this.dtFecha.Name = "dtFecha";
             this.dtFecha.Size = new System.Drawing.Size(85, 20);
             this.dtFecha.TabIndex = 3;
+            this.dtFecha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtFecha_KeyPress);
+            this.dtFecha.Leave += new System.EventHandler(this.dtFecha_Leave);
             // 
             // label3
             // 
@@ -326,37 +345,6 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "Número:";
             // 
-            // lblAlmacen
-            // 
-            this.lblAlmacen.AutoSize = true;
-            this.lblAlmacen.Location = new System.Drawing.Point(160, 22);
-            this.lblAlmacen.Name = "lblAlmacen";
-            this.lblAlmacen.Size = new System.Drawing.Size(16, 13);
-            this.lblAlmacen.TabIndex = 19;
-            this.lblAlmacen.Text = "...";
-            // 
-            // btnAlmacen
-            // 
-            this.btnAlmacen.AutoSize = true;
-            this.btnAlmacen.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnAlmacen.Image = global::InventarioFacil.Properties.Resources.Question2;
-            this.btnAlmacen.Location = new System.Drawing.Point(132, 17);
-            this.btnAlmacen.Name = "btnAlmacen";
-            this.btnAlmacen.Size = new System.Drawing.Size(22, 22);
-            this.btnAlmacen.TabIndex = 20;
-            this.btnAlmacen.UseVisualStyleBackColor = true;
-            this.btnAlmacen.Click += new System.EventHandler(this.btnAlmacen_Click);
-            // 
-            // txtAlmacen
-            // 
-            this.txtAlmacen.Location = new System.Drawing.Point(90, 18);
-            this.txtAlmacen.Name = "txtAlmacen";
-            this.txtAlmacen.Size = new System.Drawing.Size(36, 20);
-            this.txtAlmacen.TabIndex = 0;
-            this.txtAlmacen.Tag = "input";
-            this.txtAlmacen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAlmacen_KeyPress);
-            this.txtAlmacen.Leave += new System.EventHandler(this.txtAlmacen_Leave);
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -370,8 +358,8 @@
             // 
             this.gvArticulos.AllowUserToAddRows = false;
             this.gvArticulos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.gvArticulos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.gvArticulos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gvArticulos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -389,6 +377,49 @@
             this.gvArticulos.ReadOnly = true;
             this.gvArticulos.Size = new System.Drawing.Size(696, 180);
             this.gvArticulos.TabIndex = 43;
+            this.gvArticulos.DoubleClick += new System.EventHandler(this.gvArticulos_DoubleClick);
+            // 
+            // Partida
+            // 
+            this.Partida.Frozen = true;
+            this.Partida.HeaderText = "Part";
+            this.Partida.Name = "Partida";
+            this.Partida.ReadOnly = true;
+            this.Partida.Width = 50;
+            // 
+            // Codigo
+            // 
+            this.Codigo.Frozen = true;
+            this.Codigo.HeaderText = "Codigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Width = 65;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.ReadOnly = true;
+            this.Descripcion.Width = 88;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            this.Cantidad.Width = 74;
+            // 
+            // Precio_U
+            // 
+            this.Precio_U.HeaderText = "Precio U";
+            this.Precio_U.Name = "Precio_U";
+            this.Precio_U.ReadOnly = true;
+            // 
+            // Costo_U
+            // 
+            this.Costo_U.HeaderText = "Costo U";
+            this.Costo_U.Name = "Costo_U";
+            this.Costo_U.ReadOnly = true;
             // 
             // gbItems
             // 
@@ -522,47 +553,15 @@
             this.label10.TabIndex = 21;
             this.label10.Text = "Articulo:";
             // 
-            // Partida
+            // cboAlmacen
             // 
-            this.Partida.Frozen = true;
-            this.Partida.HeaderText = "Part";
-            this.Partida.Name = "Partida";
-            this.Partida.ReadOnly = true;
-            this.Partida.Width = 50;
-            // 
-            // Codigo
-            // 
-            this.Codigo.Frozen = true;
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Width = 65;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Width = 88;
-            // 
-            // Cantidad
-            // 
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
-            this.Cantidad.Width = 74;
-            // 
-            // Precio_U
-            // 
-            this.Precio_U.HeaderText = "Precio U";
-            this.Precio_U.Name = "Precio_U";
-            this.Precio_U.ReadOnly = true;
-            // 
-            // Costo_U
-            // 
-            this.Costo_U.HeaderText = "Costo U";
-            this.Costo_U.Name = "Costo_U";
-            this.Costo_U.ReadOnly = true;
+            this.cboAlmacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboAlmacen.FormattingEnabled = true;
+            this.cboAlmacen.Location = new System.Drawing.Point(90, 17);
+            this.cboAlmacen.Name = "cboAlmacen";
+            this.cboAlmacen.Size = new System.Drawing.Size(201, 21);
+            this.cboAlmacen.TabIndex = 99;
+            this.cboAlmacen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboAlmacen_KeyPress);
             // 
             // frmDocMov
             // 
@@ -574,12 +573,14 @@
             this.Controls.Add(this.gbItems);
             this.Controls.Add(this.gpMain);
             this.Controls.Add(this.toolStrip1);
+            this.KeyPreview = true;
             this.Name = "frmDocMov";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Movimientos al Inventario";
             this.Load += new System.EventHandler(this.frmDocMov_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDocMov_KeyDown);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.gpMain.ResumeLayout(false);
@@ -608,7 +609,6 @@
         private System.Windows.Forms.GroupBox gpMain;
         private System.Windows.Forms.TextBox txtComentarios;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblConcepto;
         private System.Windows.Forms.Button btnConcepto;
         private System.Windows.Forms.TextBox txtConcepto;
         private System.Windows.Forms.Label label15;
@@ -618,9 +618,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblAlmacen;
-        private System.Windows.Forms.Button btnAlmacen;
-        private System.Windows.Forms.TextBox txtAlmacen;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView gvArticulos;
         private System.Windows.Forms.GroupBox gbItems;
@@ -641,5 +638,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Precio_U;
         private System.Windows.Forms.DataGridViewTextBoxColumn Costo_U;
+        private System.Windows.Forms.ToolStripButton btnCancel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        public System.Windows.Forms.Label lblConcepto;
+        private System.Windows.Forms.ComboBox cboAlmacen;
     }
 }

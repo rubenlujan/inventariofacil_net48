@@ -91,6 +91,8 @@
     <Compile Include="DBServices\Entities\DocInvList.cs" />
     <Compile Include="DBServices\Entities\DocType.cs" />
     <Compile Include="DBServices\Entities\Item.cs" />
+    <Compile Include="DBServices\Entities\DocMov.cs" />
+    <Compile Include="DBServices\Entities\MovInv.cs" />
     <Compile Include="DBServices\Entities\User.cs" />
     <Compile Include="DBServices\ItemsDA.cs" />
     <Compile Include="DBServices\MetodosGenerales.cs" />

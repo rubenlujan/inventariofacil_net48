@@ -114,6 +114,13 @@ namespace InventarioFacil
             }
             return result;  
         }
+
+        private void GetKardex()
+        {
+            var kardex = new ItemsDA().GetKardex(int.Parse(txtItem.Text));
+            gvKardex.DataSource = kardex;
+            gvKardex.RowHeadersVisible = false;  
+        }
         #endregion
 
         #region BDActions
@@ -184,6 +191,7 @@ namespace InventarioFacil
             if (item.Imagen.Length > 0)
                 SetItemImage(item.Imagen);
             EnabledFields(false);
+            GetKardex();
             this.Cursor= Cursors.Default;
         }
 
@@ -360,7 +368,7 @@ namespace InventarioFacil
                 MessageBox.Show("Articulo borrado.");
                 this.Close();   
             }
-            EnabledButtons(false);
+            EnabledButtons(true);
         }
     }
 }

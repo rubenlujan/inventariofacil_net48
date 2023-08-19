@@ -143,6 +143,16 @@ namespace InventarioFacil.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap canceled {
+            get {
+                object obj = ResourceManager.GetObject("canceled", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap catalog {
             get {
                 object obj = ResourceManager.GetObject("catalog", resourceCulture);
