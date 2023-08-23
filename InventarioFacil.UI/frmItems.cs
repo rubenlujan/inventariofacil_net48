@@ -158,47 +158,7 @@ namespace InventarioFacil
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Archivos CSV (*.csv)|*.csv";
-            saveFileDialog.Title = "Guardar archivo CSV";
-            saveFileDialog.FileName = "articulos.csv";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string nombreArchivo = saveFileDialog.FileName;
-                string directorio = Path.GetDirectoryName(nombreArchivo);
-                try
-                {
-                    // Crear el archivo CSV y escribir los datos del DataTable
-                    using (StreamWriter sw = new StreamWriter(nombreArchivo, false, Encoding.UTF8))
-                    {
-                        // Escribir los encabezados de las columnas
-                        foreach (DataColumn columna in dv.Table.Columns)
-                        {
-                            sw.Write(columna.ColumnName);
-                            sw.Write(",");
-                        }
-                        sw.WriteLine();
-
-                        // Escribir los datos de las filas
-                        foreach (DataRowView fila in dv)
-                        {
-                            foreach (object valor in fila.Row.ItemArray)
-                            {
-                                sw.Write(valor.ToString());
-                                sw.Write(",");
-                            }
-                            sw.WriteLine();
-                        }
-                    }
-
-                    MessageBox.Show("Archivo CSV creado exitosamente.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al crear el archivo CSV: " + ex.Message);
-                }
-            }
+            Utilerias.ExportDataGridViewToCSV("Catalogo Articulos", dgvItems);
         }
     }
 }

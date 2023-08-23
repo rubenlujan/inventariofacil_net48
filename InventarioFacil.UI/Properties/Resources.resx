@@ -124,14 +124,11 @@
   <data name="impresora" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\impresora.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="btnMaximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\btnMaximize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="btnMinimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\btnMinimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fisico32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\fisico32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="pdf" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\pdf.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Reports_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Reports_4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,6 +163,9 @@
   <data name="add_62" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\add_62.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="impresion_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\impresion_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Excel-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Excel-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -190,14 +190,17 @@
   <data name="cancel_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\cancel_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="movs32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\movs32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fisico32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\fisico32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="movs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\movs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="impresion_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\impresion_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="btnMaximize" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\btnMaximize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="movs32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\movs32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exit_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\exit_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -211,8 +214,14 @@
   <data name="anadir_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\anadir_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="monitor_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\monitor_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="canceled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\canceled.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="exit32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\exit32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,13 +238,16 @@
   <data name="log-out48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\log-out48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="csv_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\csv_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hamburger" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\hamburger.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="reports32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\reports32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="canceled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\canceled.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="csv_icon_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\csv_icon_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

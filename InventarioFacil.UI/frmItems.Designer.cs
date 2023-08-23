@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmItems));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.rubbonItems = new System.Windows.Forms.Ribbon();
             this.tabAcciones = new System.Windows.Forms.RibbonTab();
             this.pnlAlta = new System.Windows.Forms.RibbonPanel();
@@ -73,7 +73,7 @@
             // 
             this.rubbonItems.QuickAccessToolbar.Visible = false;
             this.rubbonItems.RibbonTabFont = new System.Drawing.Font("Trebuchet MS", 9F);
-            this.rubbonItems.Size = new System.Drawing.Size(783, 129);
+            this.rubbonItems.Size = new System.Drawing.Size(779, 129);
             this.rubbonItems.TabIndex = 0;
             this.rubbonItems.Tabs.Add(this.tabAcciones);
             this.rubbonItems.Tabs.Add(this.tabReportes);
@@ -193,10 +193,10 @@
             // 
             this.btnExportar.DrawDropDownIconsBar = false;
             this.btnExportar.DropDownResizable = true;
-            this.btnExportar.Image = global::InventarioFacil.Properties.Resources.Excel_icon;
-            this.btnExportar.LargeImage = global::InventarioFacil.Properties.Resources.Excel_icon;
+            this.btnExportar.Image = global::InventarioFacil.Properties.Resources.csv_icon;
+            this.btnExportar.LargeImage = global::InventarioFacil.Properties.Resources.csv_icon;
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.SmallImage = global::InventarioFacil.Properties.Resources.Excel_icon;
+            this.btnExportar.SmallImage = global::InventarioFacil.Properties.Resources.csv_icon_48;
             this.btnExportar.Text = "Exportar a Archivo";
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
@@ -227,9 +227,9 @@
             this.dgvItems.AllowUserToDeleteRows = false;
             this.dgvItems.AllowUserToResizeColumns = false;
             this.dgvItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.dgvItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvItems.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -242,7 +242,7 @@
             this.dgvItems.RowHeadersWidth = 51;
             this.dgvItems.RowTemplate.Height = 24;
             this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItems.Size = new System.Drawing.Size(783, 281);
+            this.dgvItems.Size = new System.Drawing.Size(779, 277);
             this.dgvItems.TabIndex = 1;
             this.dgvItems.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvItems_ColumnHeaderMouseClick);
             this.dgvItems.DoubleClick += new System.EventHandler(this.dgvItems_DoubleClick);
@@ -251,7 +251,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(783, 410);
+            this.ClientSize = new System.Drawing.Size(779, 406);
             this.ControlBox = false;
             this.Controls.Add(this.dgvItems);
             this.Controls.Add(this.rubbonItems);

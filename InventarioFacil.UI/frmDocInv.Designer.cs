@@ -128,6 +128,7 @@
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.SmallImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.SmallImage")));
             this.btnPrint.Text = "Imprimir";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // rgSearch
             // 
@@ -187,6 +188,7 @@
             this.btnInvCost.Name = "btnInvCost";
             this.btnInvCost.SmallImage = global::InventarioFacil.Properties.Resources.reports32;
             this.btnInvCost.Text = "Inventario Costeado";
+            this.btnInvCost.Click += new System.EventHandler(this.btnInvCost_Click);
             // 
             // btnInvAlm
             // 

@@ -1,19 +1,16 @@
 ﻿using InventarioFacil.Common;
 using InventarioFacil.DAL.DBServices;
 using InventarioFacil.DAL.DBServices.Entities;
-using InventarioFacil.Domain;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows.Forms;
-using System.Xml.Linq;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+using Font = iTextSharp.text.Font;
 
 namespace InventarioFacil
 {
@@ -133,6 +130,68 @@ namespace InventarioFacil
             GlobalData.TipoEdicion = TipoAccion.Cambio;
             frmChild.ShowDialog();
             LoadData();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog sfd = new SaveFileDialog())
+            {
+                sfd.Filter = "PDF (*.pdf)|*.pdf";
+                sfd.FileName = "GridViewExport.pdf";
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    Document pdfDoc = new Document(PageSize.LETTER.Rotate(), 10f, 10f, 10f, 0f);
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(sfd.FileName, FileMode.Create));
+
+                    pdfDoc.Open();
+
+                    // Agregar encabezado
+                    pdfDoc.Add(new Paragraph("Reporte de Inventarios"));
+
+                    // Agregar números de página
+                    pdfDoc.Add(new Chunk("Página: "));
+                    pdfDoc.Add(new Chunk(writer.PageNumber.ToString()));
+
+                    PdfPTable pdfTable = new PdfPTable(dgvData.Columns.Count);
+                    pdfTable.DefaultCell.Padding = 3;
+                    pdfTable.WidthPercentage = 100;
+                    pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                    // Agregar encabezados de columna
+                    foreach (DataGridViewColumn column in dgvData.Columns)
+                    {
+                        PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                        pdfTable.AddCell(cell);
+                    }
+
+                    // Agregar filas y celdas al PDF
+                    foreach (DataGridViewRow row in dgvData.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            pdfTable.AddCell(cell.Value.ToString());
+                        }
+                    }
+
+                    pdfDoc.Add(pdfTable);
+                    pdfDoc.Close();
+                    writer.Close();
+
+                    MessageBox.Show("PDF exportado exitosamente.", "Exportar a PDF", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnInvCost_Click(object sender, EventArgs e)
+        {
+            frmStockReports frmChild = new frmStockReports();
+            frmChild.ReportData = new Reports();
+            frmChild.ReportData.ShowDate = false;
+            frmChild.ReportData.StoredProc = "usp_Costed_Inventory";
+            frmChild.ReportData.ReportName = "Inventario Costeado";
+            frmChild.ReportData.IsTotalized = true;
+            frmChild.ShowDialog();
         }
     }
 }

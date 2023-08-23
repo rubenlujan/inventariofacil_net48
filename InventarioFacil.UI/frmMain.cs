@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventarioFacil.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,7 @@ namespace InventarioFacil
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            
+            GlobalData.CompanyName = "Empresa Prueba S.A. de C.V.";
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

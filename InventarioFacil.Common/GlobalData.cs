@@ -10,6 +10,7 @@ namespace InventarioFacil.Common
     {
         public static bool ReloadGrid { get; set; }
         public static TipoAccion TipoEdicion { get; set; }  
+        public static string CompanyName { get; set; }  
     }
 
     public enum TipoAccion
@@ -18,4 +19,6 @@ namespace InventarioFacil.Common
         Cambio = 2,
         Baja = 3
     }
+
+
 }
